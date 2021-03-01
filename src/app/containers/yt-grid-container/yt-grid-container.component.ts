@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {YtDataService} from 'src/app/services/yt-data.service';
 
 @Component({
   selector: 'app-yt-grid-container',
@@ -8,9 +9,16 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 })
 export class YtGridContainerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _ytService: YtDataService) { }
 
   ngOnInit(): void {
+    this.getData();
   }
-
+  getData() {
+    this._ytService.fetchData().then(
+      (result) => {
+        console.log(result);
+      }
+    );
+  }
 }
