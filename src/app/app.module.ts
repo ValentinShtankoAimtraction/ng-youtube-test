@@ -1,12 +1,18 @@
+import {AgGridModule} from '@ag-grid-community/angular';
+import {ClientSideRowModelModule} from '@ag-grid-community/client-side-row-model';
+import {ModuleRegistry} from '@ag-grid-community/core';
 import {HttpClientModule} from '@angular/common/http';
-import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {AgGridModule} from 'ag-grid-angular';
+import {BrowserModule} from '@angular/platform-browser';
 import {YtDataService} from 'src/app/services/yt-data.service';
+
+import {AppComponent} from './app.component';
 import {COMPONENTS} from './components';
 import {CONTAINERS} from './containers';
 
-import {AppComponent} from './app.component';
+ModuleRegistry.registerModules([
+  ClientSideRowModelModule
+]);
 
 @NgModule({
   declarations: [
@@ -17,7 +23,7 @@ import {AppComponent} from './app.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AgGridModule.withComponents([])
+    AgGridModule.withComponents([]),
   ],
   providers: [YtDataService],
   bootstrap: [AppComponent]
