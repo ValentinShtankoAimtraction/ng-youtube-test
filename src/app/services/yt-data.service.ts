@@ -1,13 +1,13 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable, Subject} from 'rxjs';
-import {IYtItem, IYtRequestOptions, IYtResponse} from 'src/app/models';
+import {IDtItem, IYtItem, IYtRequestOptions, IYtResponse} from 'src/app/models';
 import {environment} from 'src/environments/environment';
 
 @Injectable()
 export class YtDataService {
-  public ytItems$: Observable<IYtItem[]>;
-  private _ytItemsSubject: Subject<IYtItem[]>;
+  public ytItems$: Observable<IDtItem[]>;
+  private _ytItemsSubject: Subject<IDtItem[]>;
   private _requestOptions: IYtRequestOptions;
 
   constructor(private _http: HttpClient) {
@@ -18,7 +18,7 @@ export class YtDataService {
       q: 'john'
     };
 
-    this._ytItemsSubject = new BehaviorSubject<IYtItem[]>([]);
+    this._ytItemsSubject = new BehaviorSubject<IDtItem[]>([]);
     this.ytItems$ = this._ytItemsSubject.asObservable();
   }
 
@@ -30,8 +30,17 @@ export class YtDataService {
       }
     }).toPromise().then(
       (response: IYtResponse) => {
-        this._ytItemsSubject.next(response.items);
+        this._ytItemsSubject.next(response.items.map((item) => this._toDtItem(item)));
       }
     )
   };
+  private _toDtItem(item: IYtItem): IDtItem {
+    return {
+      id: item.id.videoId,
+      title: item.snippet.title,
+      description: item.snippet.description,
+      publishedAt: item.snippet.publishedAt,
+      thumbnail: item.snippet.thumbnails.default.url
+    } as IDtItem
+  }
 }
