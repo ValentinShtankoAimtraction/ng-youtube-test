@@ -10,6 +10,9 @@
       [rowData]="items"
       [rowHeight]="90 + (17 * 2)"
       [rowSelection]="'multiple'"
+      [allowContextMenuWithControlKey]="true"
+      [getContextMenuItems]="dtGrid.getContextMenuItems"
+      [enableRangeSelection]="true"
       class="ag-theme-material"
     >
     </ag-grid-angular>

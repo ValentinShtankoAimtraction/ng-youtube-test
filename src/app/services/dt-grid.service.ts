@@ -37,5 +37,16 @@ export class DtGridService {
   dtSelectableColumnDefs = [
     this.dtSelectionColumn,
     ...this.dtColumnDefs
-  ]
+  ];
+
+  getContextMenuItems(params) {
+    return  [
+      {
+        name: 'Copy URL',
+        action: () => {
+          console.log(params);
+        }
+      }
+    ]
+  }
 }

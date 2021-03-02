@@ -1,6 +1,7 @@
 import {AgGridModule} from '@ag-grid-community/angular';
 import {ClientSideRowModelModule} from '@ag-grid-community/client-side-row-model';
 import {ModuleRegistry} from '@ag-grid-community/core';
+import {MenuModule} from '@ag-grid-enterprise/menu';
 import {HttpClientModule} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
@@ -17,7 +18,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import * as fromStore from './store';
 ModuleRegistry.registerModules([
-  ClientSideRowModelModule
+  ClientSideRowModelModule,
+  MenuModule
 ]);
 
 @NgModule({
