@@ -15,7 +15,7 @@ export class YtDataService {
       maxResults: '50',
       type: 'video',
       part: 'snippet',
-      q: 'john'
+      q: 'ag-grid'
     };
 
     this._ytItemsSubject = new BehaviorSubject<IDtItem[]>([]);
@@ -32,8 +32,18 @@ export class YtDataService {
       (response: IYtResponse) => {
         this._ytItemsSubject.next(response.items.map((item) => this._toDtItem(item)));
       }
+    ).catch(
+      () => {
+        // Load mock data if get error
+        this._http.get('/assets/mock/response.json').toPromise().then(
+          (response: IYtResponse) => {
+            this._ytItemsSubject.next(response.items.map((item) => this._toDtItem(item)));
+          }
+        )
+      }
     )
   };
+
   private _toDtItem(item: IYtItem): IDtItem {
     return {
       id: item.id.videoId,
