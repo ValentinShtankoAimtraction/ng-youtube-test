@@ -21,6 +21,7 @@ export const initialState: State = adapter.getInitialState({
 export function reducer(state = initialState, action: VideoActions): State {
   switch (action.type) {
     case VideoActionTypes.videoFetchItems:
+    case VideoActionTypes.videoFetchMockItems:
       return {
         ...state,
         loading: true
