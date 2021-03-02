@@ -1,5 +1,5 @@
 import {ActionReducerMap, MetaReducer} from '@ngrx/store';
-import {storeFreeze} from 'ngrx-store-freeze';
+import {VideoEffects} from './effects/video.effects';
 import {environment} from 'src/environments/environment';
 import * as fromReducers from './reducers';
 
@@ -13,6 +13,6 @@ export const reducers: ActionReducerMap<State> = {
   grid: fromReducers.grid.reducer
 };
 
-export const effects = [];
+export const effects = [VideoEffects];
 
-export const metaReducers: MetaReducer<State>[] = !environment.production ? [storeFreeze] : [];
+export const metaReducers: MetaReducer<State>[] = !environment.production ? [] : [];
