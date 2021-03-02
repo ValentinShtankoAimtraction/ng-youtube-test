@@ -8,6 +8,9 @@ import {Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter, Input}
 })
 export class YtGridToolbarComponent implements OnInit {
   @Input() isActiveSelection: boolean;
+  @Input() totalItems: number;
+  @Input() totalSelectedItems: number;
+
   @Output() toggleSelection: EventEmitter<boolean> = new EventEmitter<boolean>();
   constructor() { }
 
