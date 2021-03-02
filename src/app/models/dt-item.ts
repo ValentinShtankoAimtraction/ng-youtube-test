@@ -6,14 +6,3 @@ export interface IDtItem {
   description: string;
 }
 
-export const dateFormatter = (params) => {
-  return new Date(params.value).toLocaleString();
-};
-export const dtColumnDefs = [
-  {headerName: 'Image', field: 'thumbnail'},
-  {headerName: 'Published on', field: 'publishedAt', valueFormatter: dateFormatter},
-  {headerName: 'Title', field: 'title'},
-  {headerName: 'Description', field: 'description'},
-];
-
-export const dtColumnTypes = {};

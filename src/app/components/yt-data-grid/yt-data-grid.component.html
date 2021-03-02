@@ -2,11 +2,12 @@
   class="ag-theme-alpine"
   #ytGrid
 
-  [columnDefs]="columnDefs"
+  [columnDefs]="dtGrid.dtColumnDefs"
   [rowData]="items"
+  [rowHeight]="90 + (17 * 2)"
   [domLayout]="'autoHeight'"
   (gridReady)="onGridReady()"
-  [columnTypes]="columnTypes"
+  [columnTypes]="dtGrid.dtColumnTypes"
 >
 
 </ag-grid-angular>

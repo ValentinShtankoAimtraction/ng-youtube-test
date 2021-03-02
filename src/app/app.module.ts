@@ -7,7 +7,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {YtDataService} from 'src/app/services/yt-data.service';
 
 import {AppComponent} from './app.component';
-import {COMPONENTS} from './components';
+import {COMPONENTS, DtImageColumnComponent} from './components';
 import {CONTAINERS} from './containers';
 
 ModuleRegistry.registerModules([
@@ -23,10 +23,11 @@ ModuleRegistry.registerModules([
   imports: [
     BrowserModule,
     HttpClientModule,
-    AgGridModule.withComponents([]),
+    AgGridModule.withComponents([DtImageColumnComponent]),
   ],
   providers: [YtDataService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: []
 })
 export class AppModule {
 }
