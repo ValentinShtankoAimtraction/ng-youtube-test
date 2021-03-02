@@ -5,6 +5,13 @@ import {DtImageColumnComponent} from '../components';
 export class DtGridService {
 
   dtColumnTypes = {};
+  dtSelectionColumn = {
+    headerName: '',
+    maxWidth: 16 + (18 * 2),
+    checkboxSelection: true,
+    headerCheckboxSelection: true,
+    pinned: 'left',
+  };
 
   constructor() {
   }
@@ -14,7 +21,14 @@ export class DtGridService {
   };
 
   dtColumnDefs = [
-    {headerName: 'Image', field: 'thumbnail', maxWidth: 120 + (18 * 2), cellClass: ['align-center'], resizable: false, cellRendererFramework: DtImageColumnComponent},
+    {
+      headerName: 'Image',
+      field: 'thumbnail',
+      maxWidth: 120 + (18 * 2),
+      cellClass: ['align-center'],
+      resizable: false,
+      cellRendererFramework: DtImageColumnComponent
+    },
     {headerName: 'Title', field: 'title'},
     {headerName: 'Description', field: 'description', cellClass: ['text-wrap'], resizable: true},
     {headerName: 'Published on', field: 'publishedAt', maxWidth: 240, valueFormatter: this.dateFormatter},
