@@ -34,4 +34,8 @@ export class DtGridService {
     {headerName: 'Published on', field: 'publishedAt', maxWidth: 240, valueFormatter: this.dateFormatter},
   ];
 
+  dtSelectableColumnDefs = [
+    this.dtSelectionColumn,
+    ...this.dtColumnDefs
+  ]
 }
