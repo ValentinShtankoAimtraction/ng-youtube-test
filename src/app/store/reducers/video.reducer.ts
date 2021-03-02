@@ -36,6 +36,11 @@ export function reducer(state = initialState, action: VideoActions): State {
         ...state,
         selectedVideos: [...state.selectedVideos, action.payload]
       };
+    case VideoActionTypes.videoUnselectItem:
+      return {
+        ...state,
+        selectedVideos: state.selectedVideos.filter((item) => item != action.payload)
+      };
     case VideoActionTypes.videoError:
       return {
         ...state,
