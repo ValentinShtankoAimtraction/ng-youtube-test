@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 
 @Component({
   selector: 'app-dt-image-column',
@@ -8,7 +8,9 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 })
 export class DtImageColumnComponent {
   params;
-  constructor() { }
+
+  constructor() {
+  }
 
   agInit(params: any): void {
     this.params = params;
