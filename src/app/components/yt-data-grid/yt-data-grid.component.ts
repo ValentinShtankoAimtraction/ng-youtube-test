@@ -1,6 +1,6 @@
 import {AgGridAngular} from '@ag-grid-community/angular';
 import {Component, OnInit, ChangeDetectionStrategy, Input, ViewChild} from '@angular/core';
-import {dtColumnDefs, IDtItem} from 'src/app/models/dt-item';
+import {dtColumnDefs, dtColumnTypes, IDtItem} from 'src/app/models/dt-item';
 
 @Component({
   selector: 'app-yt-data-grid',
@@ -12,6 +12,7 @@ export class YtDataGridComponent implements OnInit {
   @ViewChild('ytGrid') ytGrid: AgGridAngular;
   @Input() items: IDtItem[];
   columnDefs = dtColumnDefs;
+  columnTypes = dtColumnTypes;
   constructor() { }
 
   ngOnInit(): void {
