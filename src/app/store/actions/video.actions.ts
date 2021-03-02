@@ -4,6 +4,7 @@ import {IDtItem} from 'src/app/models';
 
 export enum VideoActionTypes {
   videoFetchItems = '[Video] Fetch items',
+  videoFetchMockItems = '[Video] Fetch mock items',
   videoFetchItemsSuccess = '[Video] Fetch item success',
   videoSelectItem = '[Video] Select item',
   videoSelectItemSuccess = '[Video] Select item success',
@@ -14,6 +15,10 @@ export enum VideoActionTypes {
 
 export class FetchItems implements Action {
   readonly type = VideoActionTypes.videoFetchItems;
+}
+
+export class FetchMockItems implements Action {
+  readonly type = VideoActionTypes.videoFetchMockItems;
 }
 
 export class FetchItemsSuccess implements Action {
@@ -60,6 +65,7 @@ export class VideoError implements Action {
 
 export type VideoActions =
   | FetchItems
+  | FetchMockItems
   | FetchItemsSuccess
   | SelectItem
   | SelectItemSuccess
