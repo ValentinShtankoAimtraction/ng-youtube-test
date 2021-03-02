@@ -6,8 +6,10 @@
   [rowData]="items"
   [rowHeight]="90 + (17 * 2)"
   [domLayout]="'autoHeight'"
+  [rowSelection]="'multiple'"
   (gridReady)="onGridReady()"
   [columnTypes]="dtGrid.dtColumnTypes"
+  (rowSelected)="onRowSelected($event)"
 >
 
 </ag-grid-angular>
