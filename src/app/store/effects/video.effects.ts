@@ -12,11 +12,9 @@ export class VideoEffects {
     switchMap(() =>
       this._ytData.fetchVideos().pipe(
         map(videos => {
-          console.log(videos);
           return new FetchItemsSuccess(videos)
         }),
         catchError(error => {
-          console.log(error);
           return of(new VideoError(error))
         })
       )
@@ -28,11 +26,9 @@ export class VideoEffects {
     switchMap(() =>
       this._ytData.fetchMockVideos().pipe(
         map(videos => {
-          console.log(videos);
           return new FetchItemsSuccess(videos)
         }),
         catchError(error => {
-          console.log(error);
           return of(new VideoError(error))
         })
       )
