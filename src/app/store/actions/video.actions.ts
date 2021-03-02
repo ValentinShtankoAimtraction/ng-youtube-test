@@ -7,9 +7,7 @@ export enum VideoActionTypes {
   videoFetchMockItems = '[Video] Fetch mock items',
   videoFetchItemsSuccess = '[Video] Fetch item success',
   videoSelectItem = '[Video] Select item',
-  videoSelectItemSuccess = '[Video] Select item success',
   videoUnselectItem = '[Video] Unselect item',
-  videoUnselectItemSuccess = '[Video] Unselect item success',
   videoError = '[Video] Error',
 }
 
@@ -35,24 +33,10 @@ export class SelectItem implements Action {
   }
 }
 
-export class SelectItemSuccess implements Action {
-  readonly type = VideoActionTypes.videoSelectItemSuccess;
-
-  constructor(public payload: string[]) {
-  }
-}
-
 export class UnselectItem implements Action {
   readonly type = VideoActionTypes.videoUnselectItem;
 
   constructor(public payload: string) {
-  }
-}
-
-export class UnselectItemSuccess implements Action {
-  readonly type = VideoActionTypes.videoUnselectItemSuccess;
-
-  constructor(public payload: string[]) {
   }
 }
 
@@ -68,7 +52,5 @@ export type VideoActions =
   | FetchMockItems
   | FetchItemsSuccess
   | SelectItem
-  | SelectItemSuccess
   | UnselectItem
-  | UnselectItemSuccess
   | VideoError;
