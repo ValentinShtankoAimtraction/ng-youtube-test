@@ -1,5 +1,5 @@
 import {AgGridAngular} from '@ag-grid-community/angular';
-import {ChangeDetectionStrategy, Component, Input, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 
 import {IDtItem} from 'src/app/models/dt-item';
 import {DtGridService} from 'src/app/services/dt-grid.service';
@@ -14,32 +14,32 @@ import {DtGridService} from 'src/app/services/dt-grid.service';
 export class YtDataGridComponent implements OnInit {
   @ViewChild('ytGrid') ytGrid: AgGridAngular;
   @Input() items: IDtItem[];
+  @Input() selectedItems: string[];
+  @Output() selectItem: EventEmitter<string> = new EventEmitter<string>();
+  @Output() unselectItem: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(public dtGrid: DtGridService) {
   }
 
+  private _isActiveSelection: boolean = false;
+  get isActiveSelection() {
+    return this._isActiveSelection;
+  }
+
   @Input() set isActiveSelection(value: boolean) {
+    this._isActiveSelection = value;
+    if (!this.ytGrid)
+      return;
 
     if (value) {
-      this.ytGrid.api.setColumnDefs([
-        this.dtGrid.dtSelectionColumn,
-        ...this.dtGrid.dtColumnDefs
-      ]);
-      this.fitColumns();
+      this.ytGrid.api.setColumnDefs(this.dtGrid.dtSelectableColumnDefs);
     } else {
-      if (this.ytGrid) {
-        this.ytGrid.api.setColumnDefs(this.dtGrid.dtColumnDefs);
-        this.fitColumns();
-      }
+      this.ytGrid.api.setColumnDefs(this.dtGrid.dtColumnDefs);
     }
-
+    this.fitColumns();
   };
 
   ngOnInit(): void {
-  }
-
-  onGridReady() {
-
   }
 
   fitColumns() {
@@ -47,6 +47,10 @@ export class YtDataGridComponent implements OnInit {
   }
 
   onRowSelected({data}: { data: IDtItem }) {
-    console.log(data.id);
+    if (!this.selectedItems.includes(data.id)) {
+      this.selectItem.emit(data.id);
+    } else {
+      this.unselectItem.emit(data.id);
+    }
   }
 }
