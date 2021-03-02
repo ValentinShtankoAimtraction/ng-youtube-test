@@ -7,7 +7,7 @@ export class DtGridService {
   dtColumnTypes = {};
   dtSelectionColumn = {
     headerName: '',
-    maxWidth: 16 + (18 * 2),
+    maxWidth: 18 + (24 * 2),
     checkboxSelection: true,
     headerCheckboxSelection: true,
     pinned: 'left',
@@ -24,7 +24,7 @@ export class DtGridService {
     {
       headerName: 'Image',
       field: 'thumbnail',
-      maxWidth: 120 + (18 * 2),
+      maxWidth: 120 + (24 * 2),
       cellClass: ['align-center'],
       resizable: false,
       cellRendererFramework: DtImageColumnComponent
