@@ -1,1 +1,8 @@
-<p>yt-grid-toolbar works!</p>
+<mat-card>
+  <div class="grid-toolbar-row">
+    <mat-slide-toggle [checked]="isActiveSelection" (change)="toggleSelection.emit(!isActiveSelection)">{{isActiveSelection ? 'Disable' : 'Enable'}} selection mode</mat-slide-toggle>
+    <div class="spacer"></div>
+    <p>Total: <b>{{totalItems || 0}}</b></p>
+    <p>Selected: <b>{{totalSelectedItems || 0}}</b></p>
+  </div>
+</mat-card>

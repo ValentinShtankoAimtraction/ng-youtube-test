@@ -1,13 +1,12 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable, Subject} from 'rxjs';
-import {IYtItem, IYtRequestOptions, IYtResponse} from 'src/app/models';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
+import {IDtItem, IYtItem, IYtRequestOptions, IYtResponse} from 'src/app/models';
 import {environment} from 'src/environments/environment';
 
 @Injectable()
 export class YtDataService {
-  public ytItems$: Observable<IYtItem[]>;
-  private _ytItemsSubject: Subject<IYtItem[]>;
   private _requestOptions: IYtRequestOptions;
 
   constructor(private _http: HttpClient) {
@@ -15,23 +14,34 @@ export class YtDataService {
       maxResults: '50',
       type: 'video',
       part: 'snippet',
-      q: 'john'
+      q: 'ag-grid'
     };
-
-    this._ytItemsSubject = new BehaviorSubject<IYtItem[]>([]);
-    this.ytItems$ = this._ytItemsSubject.asObservable();
   }
 
-  fetchData() {
+  fetchVideos(): Observable<IDtItem[]> {
     return this._http.get(environment.api_link, {
       params: {
         key: environment.api_key,
         ...this._requestOptions,
       }
-    }).toPromise().then(
-      (response: IYtResponse) => {
-        this._ytItemsSubject.next(response.items);
-      }
+    }).pipe(
+      map((reponse: IYtResponse) => reponse.items.map((item) => YtDataService._toDtItem(item)))
     )
-  };
+  }
+
+  fetchMockVideos(): Observable<IDtItem[]> {
+    return this._http.get('/assets/mock/response.json').pipe(
+      map((reponse: IYtResponse) => reponse.items.map((item) => YtDataService._toDtItem(item)))
+    )
+  }
+
+  private static _toDtItem(item: IYtItem): IDtItem {
+    return {
+      id: item.id.videoId,
+      title: item.snippet.title,
+      description: item.snippet.description,
+      publishedAt: item.snippet.publishedAt,
+      thumbnail: item.snippet.thumbnails.default.url
+    } as IDtItem
+  }
 }
