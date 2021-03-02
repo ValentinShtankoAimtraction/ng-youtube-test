@@ -25,17 +25,17 @@ export class YtDataService {
         ...this._requestOptions,
       }
     }).pipe(
-      map((reponse: IYtResponse) => reponse.items.map((item) => this._toDtItem(item)))
+      map((reponse: IYtResponse) => reponse.items.map((item) => YtDataService._toDtItem(item)))
     )
   }
 
   fetchMockVideos(): Observable<IDtItem[]> {
     return this._http.get('/assets/mock/response.json').pipe(
-      map((reponse: IYtResponse) => reponse.items.map((item) => this._toDtItem(item)))
+      map((reponse: IYtResponse) => reponse.items.map((item) => YtDataService._toDtItem(item)))
     )
   }
 
-  private _toDtItem(item: IYtItem): IDtItem {
+  private static _toDtItem(item: IYtItem): IDtItem {
     return {
       id: item.id.videoId,
       title: item.snippet.title,
