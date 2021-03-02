@@ -1,8 +1,8 @@
 import {AgGridAngular} from '@ag-grid-community/angular';
-import {Component, OnInit, ChangeDetectionStrategy, Input, ViewChild} from '@angular/core';
-import {DtGridService} from 'src/app/services/dt-grid.service';
+import {ChangeDetectionStrategy, Component, Input, OnInit, ViewChild} from '@angular/core';
 
 import {IDtItem} from 'src/app/models/dt-item';
+import {DtGridService} from 'src/app/services/dt-grid.service';
 
 @Component({
   selector: 'app-yt-data-grid',
@@ -14,27 +14,39 @@ import {IDtItem} from 'src/app/models/dt-item';
 export class YtDataGridComponent implements OnInit {
   @ViewChild('ytGrid') ytGrid: AgGridAngular;
   @Input() items: IDtItem[];
-  @Input() set isActiveSelection(value: boolean) {
-    if (value) {
 
+  constructor(public dtGrid: DtGridService) {
+  }
+
+  @Input() set isActiveSelection(value: boolean) {
+
+    if (value) {
       this.ytGrid.api.setColumnDefs([
         this.dtGrid.dtSelectionColumn,
         ...this.dtGrid.dtColumnDefs
-      ])
+      ]);
+      this.fitColumns();
     } else {
       if (this.ytGrid) {
         this.ytGrid.api.setColumnDefs(this.dtGrid.dtColumnDefs);
+        this.fitColumns();
       }
     }
+
   };
-  constructor(public dtGrid: DtGridService) { }
 
   ngOnInit(): void {
   }
+
   onGridReady() {
+
+  }
+
+  fitColumns() {
     this.ytGrid.api.sizeColumnsToFit();
   }
-  onRowSelected({data}: {data: IDtItem}) {
+
+  onRowSelected({data}: { data: IDtItem }) {
     console.log(data.id);
   }
 }

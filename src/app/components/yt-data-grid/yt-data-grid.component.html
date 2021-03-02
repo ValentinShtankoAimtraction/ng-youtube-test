@@ -1,15 +1,19 @@
-<ag-grid-angular
-  class="ag-theme-material"
-  #ytGrid
+<mat-card>
+  <mat-card-content>
+    <ag-grid-angular
+      class="ag-theme-material"
+      #ytGrid
 
-  [columnDefs]="dtGrid.dtColumnDefs"
-  [rowData]="items"
-  [rowHeight]="90 + (17 * 2)"
-  [domLayout]="'autoHeight'"
-  [rowSelection]="'multiple'"
-  (gridReady)="onGridReady()"
-  [columnTypes]="dtGrid.dtColumnTypes"
-  (rowSelected)="onRowSelected($event)"
->
+      [columnDefs]="dtGrid.dtColumnDefs"
+      [rowData]="items"
+      [rowHeight]="90 + (17 * 2)"
+      [domLayout]="'autoHeight'"
+      [rowSelection]="'multiple'"
+      (gridReady)="fitColumns()"
+      [columnTypes]="dtGrid.dtColumnTypes"
+      (rowSelected)="onRowSelected($event)"
+    >
+    </ag-grid-angular>
+  </mat-card-content>
+</mat-card>
 
-</ag-grid-angular>
