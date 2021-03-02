@@ -1,1 +1,11 @@
-<p>yt-data-grid works!</p>
+<ag-grid-angular
+  class="ag-theme-alpine"
+  #ytGrid
+
+  [columnDefs]="columnDefs"
+  [rowData]="items"
+  [domLayout]="'autoHeight'"
+  (gridReady)="onGridReady()"
+>
+
+</ag-grid-angular>

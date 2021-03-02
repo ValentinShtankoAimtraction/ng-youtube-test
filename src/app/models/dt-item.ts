@@ -5,3 +5,10 @@ export interface IDtItem {
   title: string;
   description: string;
 }
+
+export const dtColumnDefs = [
+  { headerName: 'Image', field: 'thumbnail' },
+  { headerName: 'Published on', field: 'publishedAt' },
+  { headerName: 'Title', field: 'title' },
+  { headerName: 'Description', field: 'description' },
+];
