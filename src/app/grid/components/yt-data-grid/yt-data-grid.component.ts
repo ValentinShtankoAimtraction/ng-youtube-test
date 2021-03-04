@@ -2,7 +2,7 @@ import {AgGridAngular} from '@ag-grid-community/angular';
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 
 import {IDtItem} from 'src/app/models/dt-item';
-import {DtGridService} from 'src/app/services/dt-grid.service';
+import {DtGridService} from '../../services/dt-grid.service';
 
 @Component({
   selector: 'app-yt-data-grid',
@@ -30,18 +30,19 @@ export class YtDataGridComponent implements OnInit {
     this._isActiveSelection = value;
     if (!this.ytGrid)
       return;
+    this.toggleSelectColumn(value);
+  };
 
+  ngOnInit(): void {
+  }
+  toggleSelectColumn(value: boolean) {
     if (value) {
       this.ytGrid.api.setColumnDefs(this.dtGrid.dtSelectableColumnDefs);
     } else {
       this.ytGrid.api.setColumnDefs(this.dtGrid.dtColumnDefs);
     }
     this.fitColumns();
-  };
-
-  ngOnInit(): void {
   }
-
   fitColumns() {
     this.ytGrid.api.sizeColumnsToFit();
   }

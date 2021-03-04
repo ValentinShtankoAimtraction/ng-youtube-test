@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {DtImageColumnComponent} from '../components';
+import {DtImageColumnComponent} from 'src/app/grid/components';
 
 @Injectable()
 export class DtGridService {
@@ -16,8 +16,8 @@ export class DtGridService {
   constructor() {
   }
 
-  dateFormatter = (params) => {
-    return new Date(params.value).toLocaleString();
+  dateFormatter = ({value}: {value: string}) => {
+    return new Date(value).toLocaleString();
   };
 
   dtColumnDefs = [
@@ -44,7 +44,7 @@ export class DtGridService {
       {
         name: 'Copy URL',
         action: () => {
-          console.log(params);
+          window.open('https://www.youtube.com/watch?v='+params.node.data.id, '_blank')
         }
       }
     ]

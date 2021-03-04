@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {IDtItem} from 'src/app/models/dt-item';
-import {ToggleSelection} from 'src/app/store/actions/grid.actions';
+import * as gridActions from 'src/app/store/actions/grid.actions';
 import {FetchItems, SelectItem, UnselectItem} from 'src/app/store/actions/video.actions';
 import * as fromReducer from 'src/app/store/reducers';
 import * as fromSelectors from 'src/app/store/selectors';
@@ -29,7 +29,7 @@ export class YtGridContainerComponent implements OnInit {
   }
 
   toggleSelection(status) {
-    this._gridStore.dispatch(new ToggleSelection(status));
+    this._gridStore.dispatch(gridActions.toggleSelection(status));
   }
 
   selectItem(id) {
