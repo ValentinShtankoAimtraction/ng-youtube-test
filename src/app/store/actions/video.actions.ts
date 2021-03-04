@@ -1,4 +1,4 @@
-import {Action} from '@ngrx/store';
+import {createAction, props} from '@ngrx/store';
 
 import {IDtItem} from 'src/app/models';
 
@@ -11,46 +11,9 @@ export enum VideoActionTypes {
   videoError = '[Video] Error',
 }
 
-export class FetchItems implements Action {
-  readonly type = VideoActionTypes.videoFetchItems;
-}
-
-export class FetchMockItems implements Action {
-  readonly type = VideoActionTypes.videoFetchMockItems;
-}
-
-export class FetchItemsSuccess implements Action {
-  readonly type = VideoActionTypes.videoFetchItemsSuccess;
-
-  constructor(public payload: IDtItem[]) {
-  }
-}
-
-export class SelectItem implements Action {
-  readonly type = VideoActionTypes.videoSelectItem;
-
-  constructor(public payload: string) {
-  }
-}
-
-export class UnselectItem implements Action {
-  readonly type = VideoActionTypes.videoUnselectItem;
-
-  constructor(public payload: string) {
-  }
-}
-
-export class VideoError implements Action {
-  readonly type = VideoActionTypes.videoError;
-
-  constructor(public payload: any) {
-  }
-}
-
-export type VideoActions =
-  | FetchItems
-  | FetchMockItems
-  | FetchItemsSuccess
-  | SelectItem
-  | UnselectItem
-  | VideoError;
+export const fetchItems = createAction(VideoActionTypes.videoFetchItems);
+export const fetchMockItems = createAction(VideoActionTypes.videoFetchMockItems);
+export const fetchItemsSuccess = createAction(VideoActionTypes.videoFetchItemsSuccess, props<{ items: IDtItem[] }>());
+export const selectItem = createAction(VideoActionTypes.videoSelectItem, props<{ itemId: string }>());
+export const unselectItem = createAction(VideoActionTypes.videoUnselectItem, props<{ itemId: string }>());
+export const videoError = createAction(VideoActionTypes.videoError, props<{ error: any }>());

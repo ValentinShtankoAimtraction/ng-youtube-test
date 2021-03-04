@@ -3,7 +3,8 @@ import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {of} from 'rxjs';
 import {catchError, map, switchMap} from 'rxjs/operators';
 import {YtDataService} from 'src/app/services/yt-data.service';
-import {FetchItemsSuccess, FetchMockItems, VideoActionTypes, VideoError} from 'src/app/store/actions/video.actions';
+import {VideoActionTypes} from 'src/app/store/actions/video.actions';
+import * as videoActions from '../actions/video.actions';
 
 @Injectable()
 export class VideoEffects {
@@ -12,10 +13,10 @@ export class VideoEffects {
     switchMap(() =>
       this._ytData.fetchVideos().pipe(
         map(videos => {
-          return new FetchItemsSuccess(videos)
+          return videoActions.fetchItemsSuccess({items: videos})
         }),
         catchError(error => {
-          return of(new VideoError(error))
+          return of(videoActions.videoError({error: error}))
         })
       )
     )
@@ -26,10 +27,10 @@ export class VideoEffects {
     switchMap(() =>
       this._ytData.fetchMockVideos().pipe(
         map(videos => {
-          return new FetchItemsSuccess(videos)
+          return videoActions.fetchItemsSuccess({items: videos})
         }),
         catchError(error => {
-          return of(new VideoError(error))
+          return of(videoActions.videoError({error: error}))
         })
       )
     )
@@ -38,7 +39,7 @@ export class VideoEffects {
   fetchError$ = createEffect(() => this._actions$.pipe(
     ofType(VideoActionTypes.videoError),
     map(() =>
-      new FetchMockItems()
+      videoActions.fetchMockItems()
     )
   ));
 

@@ -1,5 +1,5 @@
-import {GridActions, GridActionTypes} from 'src/app/store/actions/grid.actions';
-
+import {Action, createReducer, on} from '@ngrx/store';
+import * as gridActions from '../actions/grid.actions';
 export interface State {
   isActiveSelection: boolean
 }
@@ -8,14 +8,11 @@ export const initialState: State = {
   isActiveSelection: true
 };
 
-export function reducer(state = initialState, action: GridActions) {
-  switch (action.type) {
-    case GridActionTypes.gridToggleSelection:
-      return {
-        ...state,
-        isActiveSelection: !state.isActiveSelection
-      };
-    default:
-      return state
-  }
+const gridReducer = createReducer(
+  initialState,
+  on(gridActions.toggleSelection, state => ({...state, isActiveSelection: !state.isActiveSelection}))
+);
+
+export function reducer(state = initialState, action: Action) {
+  return gridReducer(state, action)
 }

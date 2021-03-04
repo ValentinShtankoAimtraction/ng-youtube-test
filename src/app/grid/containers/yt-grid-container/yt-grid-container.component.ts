@@ -3,7 +3,7 @@ import {select, Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {IDtItem} from 'src/app/models/dt-item';
 import * as gridActions from 'src/app/store/actions/grid.actions';
-import {FetchItems, SelectItem, UnselectItem} from 'src/app/store/actions/video.actions';
+import * as videoactions from 'src/app/store/actions/video.actions';
 import * as fromReducer from 'src/app/store/reducers';
 import * as fromSelectors from 'src/app/store/selectors';
 
@@ -25,18 +25,18 @@ export class YtGridContainerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._videoStore.dispatch(new FetchItems());
+    this._videoStore.dispatch(videoactions.fetchItems());
   }
 
   toggleSelection(status) {
     this._gridStore.dispatch(gridActions.toggleSelection(status));
   }
 
-  selectItem(id) {
-    this._videoStore.dispatch(new SelectItem(id));
+  selectItem(id: string) {
+    this._videoStore.dispatch(videoactions.selectItem({itemId: id}));
   }
 
-  unselectItem(id) {
-    this._videoStore.dispatch(new UnselectItem(id));
+  unselectItem(id: string) {
+    this._videoStore.dispatch(videoactions.unselectItem({itemId: id}));
   }
 }

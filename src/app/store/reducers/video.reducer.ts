@@ -1,6 +1,7 @@
 import {createEntityAdapter, EntityAdapter, EntityState} from '@ngrx/entity';
+import {createReducer, on} from '@ngrx/store';
 import {IDtItem} from 'src/app/models';
-import {VideoActions, VideoActionTypes} from 'src/app/store/actions/video.actions';
+import * as videoActions from '../actions/video.actions';
 
 export interface State extends EntityState<IDtItem> {
   loaded: boolean;
@@ -17,41 +18,37 @@ export const initialState: State = adapter.getInitialState({
   error: null,
   selectedVideos: []
 });
+const videoReducer = createReducer(
+  initialState,
+  on(videoActions.fetchItems, state => ({...state, loading: true})),
+  on(videoActions.fetchMockItems, state => ({...state, loading: true})),
+  on(videoActions.fetchItemsSuccess, (state, {items}) => (adapter.addMany(items, {
+    ...state,
+    loading: false,
+    loaded: true
+  }))),
+  on(videoActions.selectItem, (state, {itemId}) => ({
+    ...state,
+    selectedVideos: [...state.selectedVideos, itemId]
+  })),
+  on(videoActions.unselectItem, (state, {itemId}) => ({
+    ...state,
+    selectedVideos: state.selectedVideos.filter((item) => item != itemId)
+  })),
+  on(videoActions.unselectItem, (state, {itemId}) => ({
+    ...state,
+    selectedVideos: state.selectedVideos.filter((item) => item != itemId)
+  })),
+  on(videoActions.videoError, (state, {error}) => ({
+    ...state,
+    loading: true,
+    loaded: false,
+    error: error
+  }))
+);
 
-export function reducer(state = initialState, action: VideoActions): State {
-  switch (action.type) {
-    case VideoActionTypes.videoFetchItems:
-    case VideoActionTypes.videoFetchMockItems:
-      return {
-        ...state,
-        loading: true
-      };
-    case VideoActionTypes.videoFetchItemsSuccess:
-      return adapter.addMany(action.payload, {
-        ...state,
-        loading: false,
-        loaded: true
-      });
-    case VideoActionTypes.videoSelectItem:
-      return {
-        ...state,
-        selectedVideos: [...state.selectedVideos, action.payload]
-      };
-    case VideoActionTypes.videoUnselectItem:
-      return {
-        ...state,
-        selectedVideos: state.selectedVideos.filter((item) => item != action.payload)
-      };
-    case VideoActionTypes.videoError:
-      return {
-        ...state,
-        loaded: false,
-        loading: true,
-        error: action.payload
-      };
-    default:
-      return state;
-  }
+export function reducer(state = initialState, action): State {
+  return videoReducer(state, action)
 }
 
 export const videoEntitySelectors = adapter.getSelectors();
