@@ -42,7 +42,7 @@ export class DtGridService {
   getContextMenuItems(params) {
     return  [
       {
-        name: 'Copy URL',
+        name: 'Open in new tab',
         action: () => {
           window.open('https://www.youtube.com/watch?v='+params.node.data.id, '_blank')
         }
