@@ -10,7 +10,10 @@ export class DtGridService {
     maxWidth: 18 + (24 * 2),
     pinned: 'left',
     cellRenderer: 'selectRenderer',
-    headerComponent: 'selectHeaderRenderer'
+    headerComponent: 'selectHeaderRenderer',
+    headerComponentParams: {
+      selected: true
+    }
   };
   dtColumnDefs = [
     {

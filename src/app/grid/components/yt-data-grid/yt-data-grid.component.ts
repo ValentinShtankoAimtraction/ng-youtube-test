@@ -1,4 +1,5 @@
 import {AgGridAngular} from '@ag-grid-community/angular';
+import {GridApi} from '@ag-grid-community/core';
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 
 import {IDtItem} from 'src/app/models/dt-item';
@@ -71,5 +72,8 @@ export class YtDataGridComponent implements OnInit {
 
   getRowNodeId(item: IDtItem): string {
     return item.id
+  }
+  selectionChanged({api}: {api: GridApi}) {
+    // console.log(api.getSelectedRows())
   }
 }
