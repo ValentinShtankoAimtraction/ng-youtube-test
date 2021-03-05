@@ -2,6 +2,7 @@ import {AgGridAngular} from '@ag-grid-community/angular';
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 
 import {IDtItem} from 'src/app/models/dt-item';
+import {DateRendererComponent} from 'src/app/shared/components';
 import {DtGridService} from '../../services/dt-grid.service';
 
 @Component({
@@ -17,7 +18,9 @@ export class YtDataGridComponent implements OnInit {
   @Input() selectedItems: string[];
   @Output() selectItem: EventEmitter<string> = new EventEmitter<string>();
   @Output() unselectItem: EventEmitter<string> = new EventEmitter<string>();
-
+  frameworkComponents = {
+    dateRenderer: DateRendererComponent
+  };
   constructor(public dtGrid: DtGridService) {
   }
 

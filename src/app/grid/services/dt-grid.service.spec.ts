@@ -34,7 +34,7 @@ describe('DtGridService', () => {
       }
     };
     let contextMenu = service.getContextMenuItems(mockParams);
-    expect(contextMenu[0].name).toBe('Copy URL');
+    expect(contextMenu[0].name).toBe('Open in new tab');
   });
 
   it('should open video on new tab', () => {

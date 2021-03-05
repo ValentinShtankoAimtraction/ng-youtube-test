@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { DtImageColumnComponent } from './dt-image-column.component';
+import {DtImageColumnComponent} from './dt-image-column.component';
 
 describe('DtImageColumnComponent', () => {
   let component: DtImageColumnComponent;
@@ -8,9 +8,9 @@ describe('DtImageColumnComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DtImageColumnComponent ]
+      declarations: [DtImageColumnComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
@@ -21,5 +21,13 @@ describe('DtImageColumnComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should init params', () => {
+    let params = {
+      value: 'mockItem'
+    };
+    component.agInit(params);
+    expect(component.params).toBe(params);
   });
 });

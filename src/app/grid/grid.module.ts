@@ -5,6 +5,8 @@ import {MenuModule} from '@ag-grid-enterprise/menu';
 import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {MaterialModule} from 'src/app/material.module';
+import {DateRendererComponent} from 'src/app/shared/components';
+import {SharedModule} from 'src/app/shared/shared.module';
 import {COMPONENTS, DtImageColumnComponent} from './components';
 import {CONTAINERS} from './containers';
 
@@ -22,8 +24,8 @@ ModuleRegistry.registerModules([
   imports: [
     CommonModule,
     MaterialModule,
-
-    AgGridModule.withComponents([DtImageColumnComponent]),
+    SharedModule,
+    AgGridModule.withComponents([DtImageColumnComponent, DateRendererComponent]),
   ],
   exports: [
     CONTAINERS

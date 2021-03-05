@@ -24,7 +24,7 @@ describe('YtDataService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should fetch items', () => {
+  it('should fetch items', (done) => {
     let mockItems = [];
     service.fetchVideos().subscribe(
       (res) => {
@@ -36,5 +36,6 @@ describe('YtDataService', () => {
     req.flush(mockItems);
 
     httpMock.verify();
+    done();
   })
 });

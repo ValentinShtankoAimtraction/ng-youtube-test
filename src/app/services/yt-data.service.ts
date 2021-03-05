@@ -18,21 +18,8 @@ export class YtDataService {
     };
   }
 
-  fetchVideos(): Observable<IDtItem[]> {
-    return this._http.get(environment.api_link, {
-      params: {
-        key: environment.api_key,
-        ...this._requestOptions,
-      }
-    }).pipe(
-      map((reponse: IYtResponse) => reponse.items.map((item) => YtDataService._toDtItem(item)))
-    )
-  }
-
-  fetchMockVideos(): Observable<IDtItem[]> {
-    return this._http.get('/assets/mock/response.json').pipe(
-      map((reponse: IYtResponse) => reponse.items.map((item) => YtDataService._toDtItem(item)))
-    )
+  private static _toDtItems(items: IYtItem[]): IDtItem[] {
+    return items.map((item) => YtDataService._toDtItem(item))
   }
 
   private static _toDtItem(item: IYtItem): IDtItem {
@@ -43,5 +30,22 @@ export class YtDataService {
       publishedAt: item.snippet.publishedAt,
       thumbnail: item.snippet.thumbnails.default.url
     } as IDtItem
+  }
+
+  fetchVideos(): Observable<IDtItem[]> {
+    return this._http.get(environment.api_link, {
+      params: {
+        key: environment.api_key,
+        ...this._requestOptions,
+      }
+    }).pipe(
+      map((reponse: IYtResponse) => YtDataService._toDtItems(reponse.items))
+    )
+  }
+
+  fetchMockVideos(): Observable<IDtItem[]> {
+    return this._http.get('/assets/mock/response.json').pipe(
+      map((reponse: IYtResponse) => YtDataService._toDtItems(reponse.items))
+    )
   }
 }
