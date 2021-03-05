@@ -2,7 +2,7 @@ import {AgGridAngular} from '@ag-grid-community/angular';
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 
 import {IDtItem} from 'src/app/models/dt-item';
-import {DateRendererComponent} from 'src/app/shared/components';
+import {DateRendererComponent, ImageRendererComponent} from 'src/app/shared/components';
 import {DtGridService} from '../../services/dt-grid.service';
 
 @Component({
@@ -19,8 +19,10 @@ export class YtDataGridComponent implements OnInit {
   @Output() selectItem: EventEmitter<string> = new EventEmitter<string>();
   @Output() unselectItem: EventEmitter<string> = new EventEmitter<string>();
   frameworkComponents = {
-    dateRenderer: DateRendererComponent
+    dateRenderer: DateRendererComponent,
+    imageRenderer: ImageRendererComponent
   };
+
   constructor(public dtGrid: DtGridService) {
   }
 
@@ -38,6 +40,7 @@ export class YtDataGridComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
   toggleSelectColumn(value: boolean) {
     if (value) {
       this.ytGrid.api.setColumnDefs(this.dtGrid.dtSelectableColumnDefs);
@@ -46,6 +49,7 @@ export class YtDataGridComponent implements OnInit {
     }
     this.fitColumns();
   }
+
   fitColumns() {
     this.ytGrid.api.sizeColumnsToFit();
   }

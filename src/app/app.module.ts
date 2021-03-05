@@ -1,3 +1,4 @@
+import {AgGridModule} from '@ag-grid-community/angular';
 import {HttpClientModule} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
@@ -26,7 +27,6 @@ import * as fromStore from './store';
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
-
     GridModule
   ],
   providers: [YtDataService],

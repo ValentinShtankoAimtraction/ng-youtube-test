@@ -18,13 +18,6 @@ describe('DtGridService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should be format data', () => {
-    let mockDataString = '2020-01-29T14:00:02Z';
-    let expectedDataString = new Date(mockDataString).toLocaleString();
-    let formatedDate = service.dateFormatter({value: mockDataString});
-    expect(formatedDate).toBe(expectedDataString);
-  });
-
   it('should return context menu', () => {
     let mockParams = {
       node: {

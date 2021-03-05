@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {DtImageColumnComponent} from 'src/app/grid/components';
 
 @Injectable()
 export class DtGridService {
@@ -19,7 +18,7 @@ export class DtGridService {
       maxWidth: 120 + (24 * 2),
       cellClass: ['align-center'],
       resizable: false,
-      cellRendererFramework: DtImageColumnComponent
+      cellRenderer: 'imageRenderer'
     },
     {headerName: 'Title', field: 'title'},
     {headerName: 'Description', field: 'description', cellClass: ['text-wrap'], resizable: true},
@@ -32,10 +31,6 @@ export class DtGridService {
 
   constructor() {
   }
-
-  dateFormatter = ({value}: { value: string }) => {
-    return new Date(value).toLocaleString();
-  };
 
   getContextMenuItems(params) {
     return [
