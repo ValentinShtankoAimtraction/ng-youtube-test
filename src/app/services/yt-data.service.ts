@@ -28,7 +28,8 @@ export class YtDataService {
       title: item.snippet.title,
       description: item.snippet.description,
       publishedAt: item.snippet.publishedAt,
-      thumbnail: item.snippet.thumbnails.default.url
+      thumbnail: item.snippet.thumbnails.default.url,
+      selected: false
     } as IDtItem
   }
 

@@ -6,10 +6,11 @@ export class DtGridService {
   dtColumnTypes = {};
   dtSelectionColumn = {
     headerName: '',
+    field: 'selected',
     maxWidth: 18 + (24 * 2),
-    checkboxSelection: true,
-    headerCheckboxSelection: true,
     pinned: 'left',
+    cellRenderer: 'selectRenderer',
+    headerComponent: 'selectHeaderRenderer'
   };
   dtColumnDefs = [
     {

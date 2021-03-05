@@ -2,7 +2,12 @@ import {AgGridAngular} from '@ag-grid-community/angular';
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 
 import {IDtItem} from 'src/app/models/dt-item';
-import {DateRendererComponent, ImageRendererComponent} from 'src/app/shared/components';
+import {
+  DateRendererComponent,
+  ImageRendererComponent,
+  SelectHeaderRendererComponent,
+  SelectRendererComponent
+} from 'src/app/shared/components';
 import {DtGridService} from '../../services/dt-grid.service';
 
 @Component({
@@ -20,7 +25,9 @@ export class YtDataGridComponent implements OnInit {
   @Output() unselectItem: EventEmitter<string> = new EventEmitter<string>();
   frameworkComponents = {
     dateRenderer: DateRendererComponent,
-    imageRenderer: ImageRendererComponent
+    imageRenderer: ImageRendererComponent,
+    selectRenderer: SelectRendererComponent,
+    selectHeaderRenderer: SelectHeaderRendererComponent,
   };
 
   constructor(public dtGrid: DtGridService) {
@@ -60,5 +67,9 @@ export class YtDataGridComponent implements OnInit {
     } else {
       this.unselectItem.emit(data.id);
     }
+  }
+
+  getRowNodeId(item: IDtItem): string {
+    return item.id
   }
 }

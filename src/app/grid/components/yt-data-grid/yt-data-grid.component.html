@@ -9,11 +9,11 @@
       [domLayout]="'autoHeight'"
       [rowData]="items"
       [rowHeight]="90 + (17 * 2)"
-      [rowSelection]="'multiple'"
       [allowContextMenuWithControlKey]="true"
       [getContextMenuItems]="dtGrid.getContextMenuItems"
-      [enableRangeSelection]="true"
       [frameworkComponents]="frameworkComponents"
+      [getRowNodeId]="getRowNodeId"
+      immutableData="true"
       class="ag-theme-material"
     >
     </ag-grid-angular>

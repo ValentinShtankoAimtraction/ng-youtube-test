@@ -4,5 +4,6 @@ export interface IDtItem {
   publishedAt: string;
   title: string;
   description: string;
+  selected: boolean;
 }
 
