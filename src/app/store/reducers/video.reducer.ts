@@ -20,8 +20,7 @@ export const initialState: State = adapter.getInitialState({
 });
 const videoReducer = createReducer(
   initialState,
-  on(videoActions.fetchItems, state => ({...state, loading: true})),
-  on(videoActions.fetchMockItems, state => ({...state, loading: true})),
+  on(videoActions.fetchItems, videoActions.fetchMockItems, state => ({...state, loading: true})),
   on(videoActions.fetchItemsSuccess, (state, {items}) => (adapter.addMany(items, {
     ...state,
     loading: false,
@@ -35,19 +34,15 @@ const videoReducer = createReducer(
     ...state,
     selectedVideos: state.selectedVideos.filter((item) => item != itemId)
   })),
-  on(videoActions.unselectItem, (state, {itemId}) => ({
+  on(videoActions.videoFetchError, videoActions.videoFetchMockError, (state, {error}) => ({
     ...state,
-    selectedVideos: state.selectedVideos.filter((item) => item != itemId)
-  })),
-  on(videoActions.videoError, (state, {error}) => ({
-    ...state,
-    loading: true,
+    loading: false,
     loaded: false,
     error: error
   }))
 );
 
-export function reducer(state = initialState, action): State {
+export function reducer(state: State, action): State {
   return videoReducer(state, action)
 }
 

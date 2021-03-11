@@ -14,6 +14,6 @@ export const getVideoLoaded = createSelector(getVideoStore, (videoStore: fromRed
 
 export const getVideoLoading = createSelector(getVideoStore, (videoStore: fromReducers.video.State) => videoStore.loading);
 
-export const getSelectedVideos = createSelector(getVideoStore, (videoStore: fromReducers.video.State) => videoStore.selectedVideos);
+export const getSelectedVideos = createSelector(getVideoStore, (videoStore: fromReducers.video.State) => <string[]>videoStore.selectedVideos);
 
 export const getVideoErrors = createSelector(getVideoStore, (videoStore: fromReducers.video.State) => videoStore.error);

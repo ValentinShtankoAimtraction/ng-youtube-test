@@ -7,3 +7,7 @@ export const isActiveSelection = createSelector(
   getGridStore,
   (store: fromReducers.grid.State) => store.isActiveSelection
 );
+export const getCount = createSelector(
+  getGridStore,
+  (store: fromReducers.grid.State) => store.count
+);
