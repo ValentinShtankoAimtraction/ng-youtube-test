@@ -1,5 +1,4 @@
 import {AgGridAngular} from '@ag-grid-community/angular';
-import {GridApi} from '@ag-grid-community/core';
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 
 import {IDtItem} from 'src/app/models/dt-item';
@@ -23,7 +22,10 @@ export class YtDataGridComponent implements OnInit {
   @Input() items: IDtItem[];
   @Input() selectedItems: string[];
   @Output() selectItem: EventEmitter<string> = new EventEmitter<string>();
+  @Output() selectAll: EventEmitter<null> = new EventEmitter<null>();
+  @Output() unselectAll: EventEmitter<null> = new EventEmitter<null>();
   @Output() unselectItem: EventEmitter<string> = new EventEmitter<string>();
+
   frameworkComponents = {
     dateRenderer: DateRendererComponent,
     imageRenderer: ImageRendererComponent,
@@ -39,23 +41,21 @@ export class YtDataGridComponent implements OnInit {
     return this._isActiveSelection;
   }
 
-  @Input() set isActiveSelection(value: boolean) {
-    this._isActiveSelection = value;
+  @Input() set isActiveSelection(active: boolean) {
+    this._isActiveSelection = active;
     if (!this.ytGrid)
       return;
-    this.toggleSelectColumn(value);
+    if (!active) {
+      this.ytGrid.api.deselectAll();
+    }
+    this.toggleSelectColumn(active);
   };
 
   ngOnInit(): void {
   }
 
-  toggleSelectColumn(value: boolean) {
-    if (value) {
-      this.ytGrid.api.setColumnDefs(this.dtGrid.dtSelectableColumnDefs);
-    } else {
-      this.ytGrid.api.setColumnDefs(this.dtGrid.dtColumnDefs);
-    }
-    this.fitColumns();
+  toggleSelectColumn(active: boolean) {
+    this.ytGrid.columnApi.setColumnVisible('selected', active);
   }
 
   fitColumns() {
@@ -68,12 +68,13 @@ export class YtDataGridComponent implements OnInit {
     } else {
       this.unselectItem.emit(data.id);
     }
+    let node = this.ytGrid.api.getRowNode(data.id);
+    this.ytGrid.api.redrawRows({rowNodes: [node]});
+    this.ytGrid.api.refreshHeader();
   }
 
   getRowNodeId(item: IDtItem): string {
     return item.id
   }
-  selectionChanged({api}: {api: GridApi}) {
-    // console.log(api.getSelectedRows())
-  }
+
 }

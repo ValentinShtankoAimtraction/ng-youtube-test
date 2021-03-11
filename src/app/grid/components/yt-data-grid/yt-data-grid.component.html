@@ -4,8 +4,8 @@
       #ytGrid
       (gridReady)="fitColumns()"
       (rowSelected)="onRowSelected($event)"
-      (selectionChanged)="selectionChanged($event)"
-      [columnDefs]="isActiveSelection ? dtGrid.dtSelectableColumnDefs : dtGrid.dtColumnDefs"
+      (columnVisible)="fitColumns()"
+      [columnDefs]="dtGrid.dtSelectableColumnDefs"
       [columnTypes]="dtGrid.dtColumnTypes"
       [domLayout]="'autoHeight'"
       [rowData]="items"

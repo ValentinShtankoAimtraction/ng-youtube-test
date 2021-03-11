@@ -3,8 +3,9 @@ import {ClientSideRowModelModule} from '@ag-grid-community/client-side-row-model
 import {ModuleRegistry} from '@ag-grid-community/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {MatCardModule} from '@angular/material/card';
-import {DtImageColumnComponent} from 'src/app/grid/components';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import {IDtItem} from 'src/app/models';
+import {RENDERER_COMPONENTS} from 'src/app/shared/components';
 
 import {YtDataGridComponent} from './yt-data-grid.component';
 
@@ -18,8 +19,8 @@ describe('YtDataGridComponent', () => {
       // MenuModule
     ]);
     await TestBed.configureTestingModule({
-      declarations: [YtDataGridComponent, DtImageColumnComponent],
-      imports: [AgGridModule.withComponents([]), MatCardModule],
+      declarations: [YtDataGridComponent, RENDERER_COMPONENTS],
+      imports: [AgGridModule.withComponents([RENDERER_COMPONENTS]), MatCardModule, MatCheckboxModule],
       providers: []
     })
       .compileComponents();
@@ -38,14 +39,12 @@ describe('YtDataGridComponent', () => {
 
   it('should enable select column', () => {
     component.isActiveSelection = true;
-    let columns = component.ytGrid.columnApi.getAllColumns();
-    expect(columns.length).toBe(5);
+    expect(component.ytGrid.columnApi.getColumn('selected').isVisible()).toBeTruthy();
   });
 
-  it('should enable select column', () => {
+  it('should disable select column', () => {
     component.isActiveSelection = false;
-    let columns = component.ytGrid.columnApi.getAllColumns();
-    expect(columns.length).toBe(4);
+    expect(component.ytGrid.columnApi.getColumn('selected').isVisible()).toBeFalsy();
   });
 
   it('should select item', () => {
