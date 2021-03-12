@@ -1,0 +1,27 @@
+<mat-card>
+  <mat-card-content>
+    <ag-grid-angular
+      #ytGrid
+      (gridReady)="fitColumns()"
+      (rowSelected)="onRowSelected($event)"
+      (columnVisible)="fitColumns()"
+      [columnDefs]="dtGrid.dtSelectableColumnDefs"
+      [columnTypes]="dtGrid.dtColumnTypes"
+      [domLayout]="'autoHeight'"
+      [rowData]="items"
+      [rowHeight]="90 + (17 * 2)"
+      [rowSelection]="'multiple'"
+      [allowContextMenuWithControlKey]="true"
+      [getContextMenuItems]="dtGrid.getContextMenuItems"
+      [enableRangeSelection]="true"
+      [frameworkComponents]="frameworkComponents"
+      [getRowNodeId]="getRowNodeId"
+      immutableData="true"
+      rowMultiSelectWithClick="true"
+      suppressRowClickSelection="true"
+      class="ag-theme-material"
+    >
+    </ag-grid-angular>
+  </mat-card-content>
+</mat-card>
+

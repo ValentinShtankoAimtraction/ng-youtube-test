@@ -1,31 +1,34 @@
-import { TestBed } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import {TestBed} from '@angular/core/testing';
+import {MockStore, provideMockStore} from '@ngrx/store/testing';
+import {YtGridContainerComponent} from 'src/app/grid/containers/yt-grid-container/yt-grid-container.component';
+import {GridModule} from 'src/app/grid/grid.module';
+import {AppComponent} from './app.component';
 
 describe('AppComponent', () => {
+  let store: MockStore;
+  const initialState = {
+    isActiveSelection: true
+  };
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
         AppComponent
+      ],
+      imports: [
+        GridModule
+      ],
+      providers: [
+        provideMockStore({initialState})
       ],
     }).compileComponents();
   });
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
+    store = TestBed.inject(MockStore);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'ng-youtube-test'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('ng-youtube-test');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('ng-youtube-test app is running!');
-  });
 });

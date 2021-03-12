@@ -1,16 +1,8 @@
-import {Action} from '@ngrx/store';
-
+import {createAction, props} from '@ngrx/store';
 
 export enum GridActionTypes {
   gridToggleSelection = '[Grid] Toggle selection'
 }
 
-export class ToggleSelection implements Action {
-  readonly type = GridActionTypes.gridToggleSelection;
+export const toggleSelection = createAction(GridActionTypes.gridToggleSelection, props<{ status: boolean }>());
 
-  constructor(public payload: boolean) {
-  }
-}
-
-export type GridActions =
-  | ToggleSelection;
