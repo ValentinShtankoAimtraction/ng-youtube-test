@@ -18,6 +18,11 @@ export class YtDataService {
     };
   }
 
+  /**
+   * TODO: Function on utils
+   * @param items
+   * @private
+   */
   private static _toDtItems(items: IYtItem[]): IDtItem[] {
     return items.map((item) => YtDataService._toDtItem(item))
   }
@@ -28,8 +33,7 @@ export class YtDataService {
       title: item.snippet.title,
       description: item.snippet.description,
       publishedAt: item.snippet.publishedAt,
-      thumbnail: item.snippet.thumbnails.default.url,
-      selected: false
+      thumbnail: item.snippet.thumbnails.default.url
     } as IDtItem
   }
 

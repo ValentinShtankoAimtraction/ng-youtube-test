@@ -1,12 +1,13 @@
-import {AgGridModule} from '@ag-grid-community/angular';
 import {HttpClientModule} from '@angular/common/http';
 import {NgModule} from '@angular/core';
+import {MAT_SNACK_BAR_DATA, MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from '@angular/material/snack-bar';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {EffectsModule} from '@ngrx/effects';
 import {StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {GridModule} from 'src/app/grid/grid.module';
+import {NotificationService} from 'src/app/services/notification.service';
 import {environment} from 'src/environments/environment';
 
 import {AppComponent} from './app.component';
@@ -21,6 +22,7 @@ import * as fromStore from './store';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MatSnackBarModule,
     StoreModule.forRoot(fromStore.reducers),
     EffectsModule.forRoot(fromStore.effects),
     StoreDevtoolsModule.instrument({
@@ -29,7 +31,7 @@ import * as fromStore from './store';
     }),
     GridModule
   ],
-  providers: [YtDataService],
+  providers: [YtDataService, NotificationService, {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}}],
   bootstrap: [AppComponent],
   entryComponents: []
 })
