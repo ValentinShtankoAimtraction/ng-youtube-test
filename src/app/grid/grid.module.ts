@@ -1,6 +1,7 @@
 import {AgGridModule} from '@ag-grid-community/angular';
 import {ClientSideRowModelModule} from '@ag-grid-community/client-side-row-model';
 import {ModuleRegistry} from '@ag-grid-community/core';
+import {ClipboardModule} from '@ag-grid-enterprise/clipboard';
 import {MenuModule} from '@ag-grid-enterprise/menu';
 import {NgModule} from '@angular/core';
 import {RENDERER_COMPONENTS} from 'src/app/shared/components';
@@ -10,7 +11,8 @@ import {CONTAINERS} from './containers';
 
 ModuleRegistry.registerModules([
   ClientSideRowModelModule,
-  MenuModule
+  MenuModule,
+  ClipboardModule
 ]);
 
 

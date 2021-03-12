@@ -24,7 +24,7 @@ export class DtGridService {
       resizable: false,
       cellRenderer: 'imageRenderer'
     },
-    {headerName: 'Title', field: 'title'},
+    {headerName: 'Video title', field: 'title'},
     {headerName: 'Description', field: 'description', cellClass: ['text-wrap'], resizable: true},
     {headerName: 'Published on', field: 'publishedAt', maxWidth: 240, cellRenderer: 'dateRenderer'},
   ];
@@ -37,13 +37,23 @@ export class DtGridService {
   }
 
   getContextMenuItems(params) {
-    return [
-      {
+    console.log(params);
+    let result = [];
+    if (params.column.colId == 'title') {
+      result.push({
         name: 'Open in new tab',
         action: () => {
           window.open('https://www.youtube.com/watch?v=' + params.node.data.id, '_blank')
-        }
-      }
-    ]
+        },
+        icon: '<span class="material-icons md-18">open_in_new</span>'
+      });
+      result.push('separator')
+    }
+    return [
+      ...result,
+      'copy',
+      'copyWithHeaders',
+      'paste'
+    ];
   }
 }

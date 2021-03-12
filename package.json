@@ -15,6 +15,7 @@
     "@ag-grid-community/angular": "^25.1.0",
     "@ag-grid-community/client-side-row-model": "^25.1.0",
     "@ag-grid-community/core": "^25.1.0",
+    "@ag-grid-enterprise/clipboard": "^25.1.0",
     "@ag-grid-enterprise/menu": "^25.1.0",
     "@angular/animations": "~11.0.4",
     "@angular/cdk": "^11.2.2",

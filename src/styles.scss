@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 @import "../node_modules/@ag-grid-community/core/dist/styles/ag-grid.scss";
 @import "../node_modules/@ag-grid-community/core/dist/styles/ag-theme-material/sass/legacy/ag-theme-material-v22-compat";
 
@@ -36,3 +37,8 @@ img.yt-video-thumbnail {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
