@@ -37,7 +37,6 @@ export class DtGridService {
   }
 
   getContextMenuItems(params) {
-    console.log(params);
     let result = [];
     if (params.column.colId == 'title') {
       result.push({
