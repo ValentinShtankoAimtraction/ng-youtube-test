@@ -6,10 +6,10 @@ import {cold, hot} from 'jest-marbles';
 import {Observable} from 'rxjs';
 import {NotificationService} from 'src/app/services/notification.service';
 import {YtDataService} from 'src/app/services/yt-data.service';
-import {getMockItems} from '../mock-items';
-import {VideoEffects} from './video.effects';
 import * as fromSelectors from 'src/app/store/selectors';
 import * as videoActions from '../actions/video.actions';
+import {getMockItems} from '../mock-items';
+import {VideoEffects} from './video.effects';
 
 declare const expect: jest.Expect;
 

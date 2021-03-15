@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ImageRendererComponent } from './image-renderer.component';
+import {ImageRendererComponent} from './image-renderer.component';
 
 describe('ImageRendererComponent', () => {
   let component: ImageRendererComponent;
@@ -8,9 +8,9 @@ describe('ImageRendererComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ImageRendererComponent ]
+      declarations: [ImageRendererComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

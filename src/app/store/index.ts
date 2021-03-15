@@ -1,6 +1,5 @@
-import {ActionReducerMap, MetaReducer} from '@ngrx/store';
+import {ActionReducerMap} from '@ngrx/store';
 import {VideoEffects} from './effects/video.effects';
-import {environment} from 'src/environments/environment';
 import * as fromReducers from './reducers';
 
 export interface State {

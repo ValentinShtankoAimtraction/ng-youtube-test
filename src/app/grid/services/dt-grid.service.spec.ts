@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { DtGridService } from './dt-grid.service';
+import {DtGridService} from './dt-grid.service';
 
 describe('DtGridService', () => {
   let service: DtGridService;
@@ -34,9 +34,9 @@ describe('DtGridService', () => {
   });
 
   it('should open video on new tab', () => {
-    spyOn( window, 'open' ).and.callFake( function() {
+    spyOn(window, 'open').and.callFake(function () {
       return true;
-    } );
+    });
     let mockParams = {
       column: {
         colId: 'title'

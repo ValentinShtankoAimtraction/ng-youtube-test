@@ -36,7 +36,7 @@ export class DtGridService {
   constructor() {
   }
 
-  getContextMenuItems(params: {column: {colId: string}, node: {data: {id: string}}}) {
+  getContextMenuItems(params: { column: { colId: string }, node: { data: { id: string } } }) {
     let result = [];
     if (params.column.colId == 'title') {
       result.push({

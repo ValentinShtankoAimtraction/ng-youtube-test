@@ -57,4 +57,4 @@ export const getMockStoreState = (): State => {
       count: 5
     }
   };
-} ;
+};

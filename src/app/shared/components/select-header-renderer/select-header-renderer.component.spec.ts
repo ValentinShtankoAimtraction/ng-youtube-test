@@ -1,7 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 
-import { SelectHeaderRendererComponent } from './select-header-renderer.component';
+import {SelectHeaderRendererComponent} from './select-header-renderer.component';
 
 describe('SelectHeaderRendererComponent', () => {
   let component: SelectHeaderRendererComponent;
@@ -9,10 +9,10 @@ describe('SelectHeaderRendererComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SelectHeaderRendererComponent ],
+      declarations: [SelectHeaderRendererComponent],
       imports: [MatCheckboxModule]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

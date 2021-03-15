@@ -1,7 +1,7 @@
 import {getMockItems} from 'src/app/store/mock-items';
-import {State} from './video.reducer';
-import * as videoReducer from './video.reducer';
 import * as videoActions from '../actions/video.actions';
+import * as videoReducer from './video.reducer';
+import {State} from './video.reducer';
 
 describe('[Store] Grid reducer', () => {
 

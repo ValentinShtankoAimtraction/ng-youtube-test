@@ -1,7 +1,7 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 
-import { NotificationService } from './notification.service';
+import {NotificationService} from './notification.service';
 
 describe('NotificationService', () => {
   let service: NotificationService;

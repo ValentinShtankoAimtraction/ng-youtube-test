@@ -10,14 +10,17 @@
   flex-direction: column;
   gap: 1rem;
 }
+
 .grid-toolbar-row {
   display: flex;
   gap: 1rem;
   align-items: center;
 }
+
 .spacer {
   flex-grow: 1;
 }
+
 .ag-cell {
 
   &.text-wrap {
@@ -35,10 +38,27 @@ img.yt-video-thumbnail {
   display: flex;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+}
 
-.material-icons.md-18 { font-size: 18px; }
-.material-icons.md-24 { font-size: 24px; }
-.material-icons.md-36 { font-size: 36px; }
-.material-icons.md-48 { font-size: 48px; }
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.material-icons.md-18 {
+  font-size: 18px;
+}
+
+.material-icons.md-24 {
+  font-size: 24px;
+}
+
+.material-icons.md-36 {
+  font-size: 36px;
+}
+
+.material-icons.md-48 {
+  font-size: 48px;
+}
