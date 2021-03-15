@@ -93,4 +93,17 @@ describe('YtDataGridComponent', () => {
 
     expect(spy).toHaveBeenCalled();
   });
+
+  it('should deselect items after disable selection mode', () => {
+    let spy = spyOn(component.ytGrid.api, 'deselectAll');
+    component.selectedItems = ['test1', 'test2'];
+    component.isActiveSelection = false;
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should call method sizeColumnsToFit from agGrid API', () => {
+    let spy = spyOn(component.ytGrid.api, 'sizeColumnsToFit');
+    component.fitColumns();
+    expect(spy).toHaveBeenCalled();
+  })
 });
