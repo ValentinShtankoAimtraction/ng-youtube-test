@@ -7,10 +7,10 @@ import {environment} from 'src/environments/environment';
 
 @Injectable()
 export class YtDataService {
-  private _requestOptions: IYtRequestOptions;
+  requestOptions: IYtRequestOptions;
 
   constructor(private _http: HttpClient) {
-    this._requestOptions = {
+    this.requestOptions = {
       maxResults: '50',
       type: 'video',
       part: 'snippet',
@@ -21,13 +21,12 @@ export class YtDataService {
   /**
    * TODO: Function on utils
    * @param items
-   * @private
    */
-  private static _toDtItems(items: IYtItem[]): IDtItem[] {
-    return items.map((item) => YtDataService._toDtItem(item))
+  toDtItems(items: IYtItem[]): IDtItem[] {
+    return items.map((item) => this.toDtItem(item))
   }
 
-  private static _toDtItem(item: IYtItem): IDtItem {
+  toDtItem(item: IYtItem): IDtItem {
     return {
       id: item.id.videoId,
       title: item.snippet.title,
@@ -41,16 +40,16 @@ export class YtDataService {
     return this._http.get(environment.api_link, {
       params: {
         key: environment.api_key,
-        ...this._requestOptions,
+        ...this.requestOptions,
       }
     }).pipe(
-      map((reponse: IYtResponse) => YtDataService._toDtItems(reponse.items))
+      map((reponse: IYtResponse) => this.toDtItems(reponse.items))
     )
   }
 
   fetchMockVideos(): Observable<IDtItem[]> {
     return this._http.get('/assets/mock/response.json').pipe(
-      map((reponse: IYtResponse) => YtDataService._toDtItems(reponse.items))
+      map((reponse: IYtResponse) => this.toDtItems(reponse.items))
     )
   }
 }
