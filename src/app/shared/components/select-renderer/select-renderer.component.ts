@@ -1,6 +1,6 @@
 import {ICellRendererAngularComp} from '@ag-grid-community/angular';
-import {ICellRendererParams, RowNode} from '@ag-grid-community/core';
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {RowNode} from '@ag-grid-community/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component} from '@angular/core';
 
 @Component({
   selector: 'app-select-renderer',
@@ -10,18 +10,25 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 })
 export class SelectRendererComponent implements ICellRendererAngularComp {
   checked: any;
-  private node: RowNode;
+  node: RowNode;
 
-  agInit(params: ICellRendererParams): void {
-    this.node = params.node;
+  constructor(private ref: ChangeDetectorRef) {
+  }
+
+  agInit({node}): void {
+    this.node = node;
     this.checked = this.node.isSelected();
   }
 
-  refresh(params: ICellRendererParams): boolean {
-    return false;
+  refresh({node}): boolean {
+    this.node = node;
+    this.checked = node.isSelected();
+    this.ref.detectChanges();
+    return true;
   }
 
   changeSelection({checked}) {
     this.node.setSelected(checked);
+    this.ref.detectChanges();
   }
 }

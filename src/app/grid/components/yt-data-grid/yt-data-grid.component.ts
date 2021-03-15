@@ -76,27 +76,41 @@ export class YtDataGridComponent implements OnInit {
   selectRows(rowIds: string[]) {
     if (rowIds.length > 1) {
       this.selectAll.emit();
-      this.redrawRows(rowIds);
+      this.refreshRows();
     } else {
-      this.selectItem.emit(rowIds.pop())
+      let rowId = rowIds.pop();
+      this.selectItem.emit(rowId);
+      this.refreshRow(rowId);
     }
   }
 
   unselectRows(rowIds: string[]) {
     if (rowIds.length > 1) {
       this.unselectAll.emit();
-      this.redrawRows(rowIds);
+      this.refreshRows();
     } else {
-      this.unselectItem.emit(rowIds.pop())
+      let rowId = rowIds.pop();
+      this.unselectItem.emit(rowId);
+      this.refreshRow(rowId)
     }
   }
 
-  redrawRows(rowIds: string[]) {
-    let rowNodes = [];
-    for (let id of rowIds) {
-      let rowNode = this.ytGrid.api.getRowNode(id);
-      rowNodes = [...rowNodes, rowNode];
-    }
-    this.ytGrid.api.redrawRows({rowNodes: rowNodes})
+  // Update checkbox status for single row
+  refreshRow(rowId) {
+    let rowNode = this.ytGrid.api.getRowNode(rowId);
+
+    this.ytGrid.api.refreshCells({
+      rowNodes: [rowNode],
+      columns: ['selected'],
+      force: true
+    })
+  }
+
+  // Update checkbox status for all rows
+  refreshRows() {
+    this.ytGrid.api.refreshCells({
+      columns: ['selected'],
+      force: true
+    });
   }
 }
