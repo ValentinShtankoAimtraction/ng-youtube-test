@@ -20,6 +20,9 @@ describe('DtGridService', () => {
 
   it('should return context menu', () => {
     let mockParams = {
+      column: {
+        colId: 'title'
+      },
       node: {
         data: {
           id: 'mockItemId'
@@ -35,6 +38,9 @@ describe('DtGridService', () => {
       return true;
     } );
     let mockParams = {
+      column: {
+        colId: 'title'
+      },
       node: {
         data: {
           id: 'mockItemId'
