@@ -61,4 +61,21 @@ describe('NotificationService', () => {
     expect(spy).toHaveBeenCalled();
     expect(spy).toHaveBeenCalledWith(`Unselected [${itemId}]`, `${selected}/${count}`);
   });
+
+  it('should call selectAll', () => {
+    const spy = spyOn(snackbar, 'open');
+    service.selectAll();
+
+    expect(spy).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalledWith(`Selected all videos`);
+  });
+
+  it('should call unselectAll', () => {
+    const spy = spyOn(snackbar, 'open');
+    service.unselectAll();
+
+    expect(spy).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalledWith(`Unselected all videos`);
+  });
+
 });
