@@ -15,4 +15,4 @@ export const reducers: ActionReducerMap<State> = {
 
 export const effects = [VideoEffects];
 
-export const metaReducers: MetaReducer<State>[] = !environment.production ? [] : [];
+

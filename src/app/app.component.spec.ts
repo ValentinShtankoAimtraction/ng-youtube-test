@@ -1,6 +1,5 @@
 import {TestBed} from '@angular/core/testing';
 import {MockStore, provideMockStore} from '@ngrx/store/testing';
-import {YtGridContainerComponent} from 'src/app/grid/containers/yt-grid-container/yt-grid-container.component';
 import {GridModule} from 'src/app/grid/grid.module';
 import {AppComponent} from './app.component';
 

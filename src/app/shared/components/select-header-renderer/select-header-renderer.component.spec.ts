@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MaterialModule} from 'src/app/shared/material.module';
 
 import { SelectHeaderRendererComponent } from './select-header-renderer.component';
 

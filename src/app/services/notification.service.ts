@@ -14,10 +14,10 @@ export class NotificationService {
     this._snackBar.open(`Fetch failure`);
   }
 
-  selectItem(itemId, selected, count) {
+  selectItem(itemId: string, selected: number, count: number) {
     this._snackBar.open(`Selected [${itemId}]`, `${selected}/${count}`);
   }
-  unselectItem(itemId, selected, count) {
+  unselectItem(itemId: string, selected: number, count: number) {
     this._snackBar.open(`Unselected [${itemId}]`, `${selected}/${count}`);
   }
 
