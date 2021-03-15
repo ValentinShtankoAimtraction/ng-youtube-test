@@ -20,4 +20,12 @@ export class NotificationService {
   unselectItem(itemId, selected, count) {
     this._snackBar.open(`Unselected [${itemId}]`, `${selected}/${count}`);
   }
+
+  selectAll() {
+    this._snackBar.open(`Selected all videos`);
+  }
+
+  unselectAll() {
+    this._snackBar.open(`Unselected all videos`);
+  }
 }

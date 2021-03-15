@@ -6,6 +6,8 @@
   <app-yt-data-grid
     (selectItem)="selectItem($event)"
     (unselectItem)="unselectItem($event)"
+    (selectAll)="selectAll()"
+    (unselectAll)="unselectAll()"
     [isActiveSelection]="isActiveSelection$ | async"
     [items]="videos$ | async"
     [selectedItems]="selectedItems$ | async"

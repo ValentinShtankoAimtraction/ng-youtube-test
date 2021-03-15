@@ -3,7 +3,7 @@
     <ag-grid-angular
       #ytGrid
       (gridReady)="fitColumns()"
-      (rowSelected)="onRowSelected($event)"
+      (selectionChanged)="onSelectionChanged($event)"
       (columnVisible)="fitColumns()"
       [columnDefs]="dtGrid.dtSelectableColumnDefs"
       [columnTypes]="dtGrid.dtColumnTypes"

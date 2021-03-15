@@ -7,7 +7,7 @@ export interface State {
 
 export const initialState: State = {
   isActiveSelection: true,
-  count: 15
+  count: 50
 };
 
 const gridReducer = createReducer(

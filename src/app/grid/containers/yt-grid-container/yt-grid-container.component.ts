@@ -39,4 +39,11 @@ export class YtGridContainerComponent implements OnInit {
   unselectItem(id: string) {
     this._videoStore.dispatch(videoactions.unselectItem({itemId: id}));
   }
+  selectAll() {
+    this._videoStore.dispatch(videoactions.selectAll());
+  }
+
+  unselectAll() {
+    this._videoStore.dispatch(videoactions.unselectAll());
+  }
 }

@@ -34,6 +34,14 @@ const videoReducer = createReducer(
     ...state,
     selectedVideos: state.selectedVideos.filter((item) => item != itemId)
   })),
+  on(videoActions.selectAll, (state) => ({
+    ...state,
+    selectedVideos: <string[]>state.ids
+  })),
+  on(videoActions.unselectAll, (state) => ({
+    ...state,
+    selectedVideos: []
+  })),
   on(videoActions.videoFetchError, videoActions.videoFetchMockError, (state, {error}) => ({
     ...state,
     loading: false,
