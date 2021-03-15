@@ -37,16 +37,10 @@ export class YtDataGridComponent implements OnInit {
   constructor(@Self() public dtGrid: DtGridService) {
   }
 
-  private _isActiveSelection: boolean = false;
-  get isActiveSelection() {
-    return this._isActiveSelection;
-  }
-
   @Input() set isActiveSelection(active: boolean) {
-    this._isActiveSelection = active;
     if (!this.ytGrid)
       return;
-    if (!active) {
+    if (!active && this.selectedItems.length) {
       this.ytGrid.api.deselectAll();
     }
     this.toggleSelectColumn(active);
@@ -66,7 +60,8 @@ export class YtDataGridComponent implements OnInit {
   getRowNodeId(item: IDtItem): string {
     return item.id
   }
-  onSelectionChanged({api}: {api: GridApi}) {
+
+  onSelectionChanged({api}: { api: GridApi }) {
     let selectedIds = api.getSelectedRows().map((item) => item.id);
     let unselected = this.selectedItems.filter(item => selectedIds.indexOf(item) < 0);
     let selected = selectedIds.filter(item => this.selectedItems.indexOf(item) < 0);
