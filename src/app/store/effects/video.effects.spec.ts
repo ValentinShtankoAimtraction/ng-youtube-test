@@ -178,5 +178,24 @@ describe('[Store] Video effects', () => {
 
       expect(effects.toggleSelectItem$).toBeObservable(cold('-a', {a: [action, selected, count]}));
     });
+  });
+
+  describe('toggleSelectAll', () => {
+
+    it('should select all items', () => {
+      const action = videoActions.selectAll();
+      actions$ = cold('-a', {a: action});
+
+      notification.selectAll = (() => jest.fn());
+      expect(effects.toggleSelectAll$).toBeObservable(cold('-a', {a: action}));
+    });
+
+    it('should unselect all item', () => {
+      const action = videoActions.unselectAll();
+      actions$ = cold('-a', {a: action});
+
+      notification.unselectAll = (() => jest.fn());
+      expect(effects.toggleSelectAll$).toBeObservable(cold('-a', {a: action}));
+    });
   })
 });
