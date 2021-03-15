@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {Store} from '@ngrx/store';
 import {of} from 'rxjs';
-import {catchError, delay, map, switchMap, tap, withLatestFrom} from 'rxjs/operators';
+import {catchError, map, switchMap, tap, withLatestFrom} from 'rxjs/operators';
 import {NotificationService} from 'src/app/services/notification.service';
 import {YtDataService} from 'src/app/services/yt-data.service';
 import {VideoActionTypes} from 'src/app/store/actions/video.actions';
@@ -78,6 +78,17 @@ export class VideoEffects {
         return (type == videoActions.selectItem.type)
           ? this._notification.selectItem(itemId, selected.length, count)
           : this._notification.unselectItem(itemId, selected.length, count)
+      }
+    )
+  ), {dispatch: false});
+
+  toggleSelectAll$ = createEffect(() => this._actions$.pipe(
+    ofType(VideoActionTypes.videoSelectAll, VideoActionTypes.videoUnselectAll),
+    tap(
+      ({type}) => {
+        return (type == videoActions.selectAll.type)
+          ? this._notification.selectAll()
+          : this._notification.unselectAll()
       }
     )
   ), {dispatch: false});

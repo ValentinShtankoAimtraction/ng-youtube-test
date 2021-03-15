@@ -1,5 +1,6 @@
 import {AgGridAngular} from '@ag-grid-community/angular';
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {GridApi} from '@ag-grid-community/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, Self, ViewChild} from '@angular/core';
 
 import {IDtItem} from 'src/app/models/dt-item';
 import {
@@ -33,19 +34,13 @@ export class YtDataGridComponent implements OnInit {
     selectHeaderRenderer: SelectHeaderRendererComponent,
   };
 
-  constructor(public dtGrid: DtGridService) {
-  }
-
-  private _isActiveSelection: boolean = false;
-  get isActiveSelection() {
-    return this._isActiveSelection;
+  constructor(@Self() public dtGrid: DtGridService) {
   }
 
   @Input() set isActiveSelection(active: boolean) {
-    this._isActiveSelection = active;
     if (!this.ytGrid)
       return;
-    if (!active) {
+    if (!active && this.selectedItems.length) {
       this.ytGrid.api.deselectAll();
     }
     this.toggleSelectColumn(active);
@@ -62,19 +57,60 @@ export class YtDataGridComponent implements OnInit {
     this.ytGrid.api.sizeColumnsToFit();
   }
 
-  onRowSelected({data}: { data: IDtItem }) {
-    if (!this.selectedItems.includes(data.id)) {
-      this.selectItem.emit(data.id);
-    } else {
-      this.unselectItem.emit(data.id);
-    }
-    let node = this.ytGrid.api.getRowNode(data.id);
-    this.ytGrid.api.redrawRows({rowNodes: [node]});
-    this.ytGrid.api.refreshHeader();
-  }
-
   getRowNodeId(item: IDtItem): string {
     return item.id
   }
 
+  onSelectionChanged({api}: { api: GridApi }) {
+    let selectedIds = api.getSelectedRows().map((item) => item.id);
+    let unselected = this.selectedItems.filter(item => selectedIds.indexOf(item) < 0);
+    let selected = selectedIds.filter(item => this.selectedItems.indexOf(item) < 0);
+    if (selected.length) {
+      this.selectRows(selected);
+    } else {
+      this.unselectRows(unselected);
+    }
+    this.ytGrid.api.refreshHeader();
+  }
+
+  selectRows(rowIds: string[]) {
+    if (rowIds.length > 1) {
+      this.selectAll.emit();
+      this.refreshRows();
+    } else {
+      let rowId = rowIds.pop();
+      this.selectItem.emit(rowId);
+      this.refreshRow(rowId);
+    }
+  }
+
+  unselectRows(rowIds: string[]) {
+    if (rowIds.length > 1) {
+      this.unselectAll.emit();
+      this.refreshRows();
+    } else {
+      let rowId = rowIds.pop();
+      this.unselectItem.emit(rowId);
+      this.refreshRow(rowId)
+    }
+  }
+
+  // Update checkbox status for single row
+  refreshRow(rowId) {
+    let rowNode = this.ytGrid.api.getRowNode(rowId);
+
+    this.ytGrid.api.refreshCells({
+      rowNodes: [rowNode],
+      columns: ['selected'],
+      force: true
+    })
+  }
+
+  // Update checkbox status for all rows
+  refreshRows() {
+    this.ytGrid.api.refreshCells({
+      columns: ['selected'],
+      force: true
+    });
+  }
 }

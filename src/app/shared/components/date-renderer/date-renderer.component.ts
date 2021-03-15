@@ -1,6 +1,6 @@
 import {ICellRendererAngularComp} from '@ag-grid-community/angular';
 import {ICellRendererParams} from '@ag-grid-community/core';
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 
 @Component({
   selector: 'app-date-renderer',
@@ -11,7 +11,8 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 export class DateRendererComponent implements ICellRendererAngularComp {
   value: any;
 
-  constructor() { }
+  constructor() {
+  }
 
   agInit(params: ICellRendererParams): void {
     this.value = params.value

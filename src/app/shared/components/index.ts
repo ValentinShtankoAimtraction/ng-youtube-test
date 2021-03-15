@@ -1,7 +1,7 @@
+import {DateRendererComponent} from './date-renderer/date-renderer.component';
+import {ImageRendererComponent} from './image-renderer/image-renderer.component';
 import {SelectHeaderRendererComponent} from './select-header-renderer/select-header-renderer.component';
 import {SelectRendererComponent} from './select-renderer/select-renderer.component';
-import {ImageRendererComponent} from './image-renderer/image-renderer.component';
-import {DateRendererComponent} from './date-renderer/date-renderer.component';
 
 export const RENDERER_COMPONENTS = [
   DateRendererComponent,

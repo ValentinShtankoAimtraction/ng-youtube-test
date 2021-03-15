@@ -6,7 +6,7 @@
     "start": "ng serve",
     "hmr": "ng serve --configuration hmr",
     "build": "ng build",
-    "test": "ng test",
+    "test": "jest --coverage",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },

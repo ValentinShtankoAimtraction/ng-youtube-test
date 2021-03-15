@@ -1,5 +1,6 @@
 import {Action, createReducer, on} from '@ngrx/store';
 import * as gridActions from '../actions/grid.actions';
+
 export interface State {
   isActiveSelection: boolean,
   count: number
@@ -7,7 +8,7 @@ export interface State {
 
 export const initialState: State = {
   isActiveSelection: true,
-  count: 15
+  count: 50
 };
 
 const gridReducer = createReducer(

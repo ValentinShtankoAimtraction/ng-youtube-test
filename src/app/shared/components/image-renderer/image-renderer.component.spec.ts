@@ -1,6 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ICellRendererParams} from '@ag-grid-community/core';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ImageRendererComponent } from './image-renderer.component';
+import {ImageRendererComponent} from './image-renderer.component';
 
 describe('ImageRendererComponent', () => {
   let component: ImageRendererComponent;
@@ -8,9 +9,9 @@ describe('ImageRendererComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ImageRendererComponent ]
+      declarations: [ImageRendererComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
@@ -21,5 +22,17 @@ describe('ImageRendererComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should initialize image attribute', () => {
+    const mockLink = 'http://mock.link';
+    component.agInit(<ICellRendererParams>{value: mockLink});
+    expect(component.value).toBe(mockLink);
+  });
+
+  it('should refresh image attribute', () => {
+    const mockLink = 'http://mock.link.jest';
+    component.refresh(<ICellRendererParams>{value: mockLink});
+    expect(component.value).toBe(mockLink);
   });
 });

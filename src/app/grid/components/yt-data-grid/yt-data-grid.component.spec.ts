@@ -4,8 +4,8 @@ import {ModuleRegistry} from '@ag-grid-community/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import {IDtItem} from 'src/app/models';
 import {RENDERER_COMPONENTS} from 'src/app/shared/components';
+import {getMockItems} from 'src/app/utils/testing/mock-items';
 
 import {YtDataGridComponent} from './yt-data-grid.component';
 
@@ -16,7 +16,6 @@ describe('YtDataGridComponent', () => {
   beforeEach(async () => {
     await ModuleRegistry.registerModules([
       ClientSideRowModelModule,
-      // MenuModule
     ]);
     await TestBed.configureTestingModule({
       declarations: [YtDataGridComponent, RENDERER_COMPONENTS],
@@ -30,12 +29,14 @@ describe('YtDataGridComponent', () => {
     fixture = TestBed.createComponent(YtDataGridComponent);
     component = fixture.componentInstance;
     component.selectedItems = [];
+    component.items = getMockItems();
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 
   it('should enable select column', () => {
     component.isActiveSelection = true;
@@ -49,30 +50,60 @@ describe('YtDataGridComponent', () => {
 
   it('should select item', () => {
     spyOn(component.selectItem, 'emit');
-    let mockItem: IDtItem = {
-      id: 'mockItem',
-      title: '',
-      thumbnail: '',
-      publishedAt: '',
-      description: ''
-    };
-    component.onRowSelected({data: mockItem});
+
+    let api = component.ytGrid.api;
+    api.getRowNode('test1').setSelected(true);
+
+    component.onSelectionChanged({api});
     expect(component.selectItem.emit).toHaveBeenCalled();
-    expect(component.selectItem.emit).toHaveBeenCalledWith('mockItem');
+    expect(component.selectItem.emit).toHaveBeenCalledWith('test1');
   });
 
   it('should unselect item', () => {
     spyOn(component.unselectItem, 'emit');
-    component.selectedItems = ['mockItem'];
-    let mockItem: IDtItem = {
-      id: 'mockItem',
-      title: '',
-      thumbnail: '',
-      publishedAt: '',
-      description: ''
-    };
-    component.onRowSelected({data: mockItem});
+    component.selectedItems = ['test2'];
+
+    let api = component.ytGrid.api;
+
+    api.getRowNode('test2').setSelected(false);
+    component.onSelectionChanged({api});
+
     expect(component.unselectItem.emit).toHaveBeenCalled();
-    expect(component.unselectItem.emit).toHaveBeenCalledWith('mockItem');
+    expect(component.unselectItem.emit).toHaveBeenCalledWith('test2');
   });
+
+  it('should select all items', () => {
+    let spy = spyOn(component.selectAll, 'emit');
+    let api = component.ytGrid.api;
+
+    api.selectAll();
+
+    component.onSelectionChanged({api});
+
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should select all items', () => {
+    let spy = spyOn(component.unselectAll, 'emit');
+    let api = component.ytGrid.api;
+    component.selectedItems = ['test1', 'test2', 'test3', 'test4', 'test5'];
+    api.deselectAll();
+
+    component.onSelectionChanged({api});
+
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should deselect items after disable selection mode', () => {
+    let spy = spyOn(component.ytGrid.api, 'deselectAll');
+    component.selectedItems = ['test1', 'test2'];
+    component.isActiveSelection = false;
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should call method sizeColumnsToFit from agGrid API', () => {
+    let spy = spyOn(component.ytGrid.api, 'sizeColumnsToFit');
+    component.fitColumns();
+    expect(spy).toHaveBeenCalled();
+  })
 });

@@ -1,7 +1,7 @@
 import {getMockItems} from 'src/app/store/mock-items';
-import {State} from './video.reducer';
-import * as videoReducer from './video.reducer';
 import * as videoActions from '../actions/video.actions';
+import * as videoReducer from './video.reducer';
+import {State} from './video.reducer';
 
 describe('[Store] Grid reducer', () => {
 
@@ -82,6 +82,38 @@ describe('[Store] Grid reducer', () => {
       const state = videoReducer.reducer(initialState, action);
 
       expect(state.selectedVideos).not.toContain(item.itemId)
+    })
+  });
+
+  describe('selectAll action', () => {
+    it('should select all items', () => {
+      const expectedIds = ['test1', 'test2', 'test3', 'test4', 'test4'];
+
+      const initialState: State = {
+        ...videoReducer.initialState,
+        ids: expectedIds,
+      };
+
+      const action = videoActions.selectAll();
+
+      const state = videoReducer.reducer(initialState, action);
+
+      expect(state.selectedVideos).toEqual(expectedIds)
+    })
+  });
+
+  describe('unselectAll action', () => {
+    it('should clear array with selected ids', () => {
+      const initialState: State = {
+        ...videoReducer.initialState,
+        selectedVideos: ['test1', 'test2', 'test3', 'test4', 'test4'],
+      };
+
+      const action = videoActions.unselectAll();
+
+      const state = videoReducer.reducer(initialState, action);
+
+      expect(state.selectedVideos.length).toBe(0)
     })
   });
 

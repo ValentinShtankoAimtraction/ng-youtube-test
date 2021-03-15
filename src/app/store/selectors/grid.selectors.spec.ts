@@ -1,6 +1,6 @@
+import * as fromSelectors from 'src/app/store/selectors';
 import {State} from '../index';
 import {getMockStoreState} from '../mockstore';
-import * as fromSelectors from 'src/app/store/selectors';
 
 describe('[Store] Grid selectors', () => {
   const initialState: State = getMockStoreState();
