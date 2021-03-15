@@ -18,7 +18,7 @@ describe('DtGridService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should return context menu', () => {
+  it('should return context menu with link', () => {
     let mockParams = {
       column: {
         colId: 'title'
@@ -51,5 +51,23 @@ describe('DtGridService', () => {
     contextMenu[0].action();
     expect(window.open).toHaveBeenCalled();
     expect(window.open).toHaveBeenCalledWith(`https://www.youtube.com/watch?v=${mockParams.node.data.id}`, '_blank');
-  })
+  });
+
+  it('should return context menu with copy, copy with header and paste', () => {
+    let mockParams = {
+      column: {
+        colId: 'thumbnail'
+      },
+      node: {
+        data: {
+          id: 'mockItemId'
+        }
+      }
+    };
+    let contextMenu = service.getContextMenuItems(mockParams);
+    expect(contextMenu[0]).toBe('copy');
+    expect(contextMenu[1]).toBe('copyWithHeaders');
+    expect(contextMenu[2]).toBe('paste');
+  });
+
 });
