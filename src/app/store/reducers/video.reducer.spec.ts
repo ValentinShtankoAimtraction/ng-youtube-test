@@ -85,6 +85,38 @@ describe('[Store] Grid reducer', () => {
     })
   });
 
+  describe('selectAll action', () => {
+    it('should select all items', () => {
+      const expectedIds = ['test1', 'test2', 'test3', 'test4', 'test4'];
+
+      const initialState: State = {
+        ...videoReducer.initialState,
+        ids: expectedIds,
+      };
+
+      const action = videoActions.selectAll();
+
+      const state = videoReducer.reducer(initialState, action);
+
+      expect(state.selectedVideos).toEqual(expectedIds)
+    })
+  });
+
+  describe('unselectAll action', () => {
+    it('should clear array with selected ids', () => {
+      const initialState: State = {
+        ...videoReducer.initialState,
+        selectedVideos: ['test1', 'test2', 'test3', 'test4', 'test4'],
+      };
+
+      const action = videoActions.unselectAll();
+
+      const state = videoReducer.reducer(initialState, action);
+
+      expect(state.selectedVideos.length).toBe(0)
+    })
+  });
+
   describe('videoFetchError action', () => {
     it('should remove id of selected item from selectedVideos array', () => {
       const initialState: State = {

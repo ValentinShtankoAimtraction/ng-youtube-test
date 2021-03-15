@@ -37,12 +37,15 @@ describe('SelectRendererComponent', () => {
     let node = {isSelected: () => true};
     component.agInit({node});
     let refreshNode = {isSelected: () => false};
-    component.refresh(<ICellRendererParams>{node: refreshNode} );
+    component.refresh(<ICellRendererParams>{node: refreshNode});
     expect(component.checked).toBeFalsy();
   });
 
   it('should change selection status', () => {
-    component.node = {setSelected: (newValue: boolean, clearSelection?: boolean, suppressFinishActions?: boolean) => {}} as RowNode;
+    component.node = {
+      setSelected: (newValue: boolean, clearSelection?: boolean, suppressFinishActions?: boolean) => {
+      }
+    } as RowNode;
     let spy = spyOn(component.node, 'setSelected');
     component.changeSelection({checked: true});
     expect(spy).toHaveBeenCalled();

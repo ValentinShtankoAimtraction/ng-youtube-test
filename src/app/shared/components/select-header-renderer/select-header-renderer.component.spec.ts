@@ -32,14 +32,20 @@ describe('SelectHeaderRendererComponent', () => {
   });
 
   it('should select emit selectAll event', () => {
-    component.gridApi = <GridApi>{selectAll: () => {}};
+    component.gridApi = <GridApi>{
+      selectAll: () => {
+      }
+    };
     let spy = spyOn(component.gridApi, 'selectAll');
     component.selectAll();
     expect(spy).toHaveBeenCalled();
   });
 
   it('should select emit unselectAll event', () => {
-    component.gridApi = <GridApi>{deselectAll: () => {}};
+    component.gridApi = <GridApi>{
+      deselectAll: () => {
+      }
+    };
     let spy = spyOn(component.gridApi, 'deselectAll');
     component.unselectAll();
     expect(spy).toHaveBeenCalled();
