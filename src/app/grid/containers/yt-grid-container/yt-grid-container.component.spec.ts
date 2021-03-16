@@ -3,20 +3,17 @@ import {MockStore, provideMockStore} from '@ngrx/store/testing';
 import {GridModule} from 'src/app/grid/grid.module';
 
 import {YtGridContainerComponent} from './yt-grid-container.component';
+import * as gridReducer from 'src/app/store/reducers/grid.reducer';
+import * as videoReducer from 'src/app/store/reducers/video.reducer';
 
 describe('YtGridContainerComponent', () => {
   let component: YtGridContainerComponent;
   let fixture: ComponentFixture<YtGridContainerComponent>;
   let store: MockStore;
   const initialState = {
-    grid: {
-      isActiveSelection: true
-    },
-    video: {
-      items: []
-    }
+    grid: gridReducer.initialState,
+    video: videoReducer.initialState
   };
-
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [],
