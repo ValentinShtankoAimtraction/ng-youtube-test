@@ -9,5 +9,5 @@ export interface IYtResponse {
   pageInfo: {
     totalResults: number,
     resultsPerPage: number
-  }
+  };
 }

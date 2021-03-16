@@ -21,5 +21,7 @@ export const unselectAll = createAction(VideoActionTypes.videoUnselectAll);
 export const fetchItemsSuccess = createAction(VideoActionTypes.videoFetchItemsSuccess, props<{ items: IDtItem[] }>());
 export const selectItem = createAction(VideoActionTypes.videoSelectItem, props<{ itemId: string }>());
 export const unselectItem = createAction(VideoActionTypes.videoUnselectItem, props<{ itemId: string }>());
+// tslint:disable-next-line:no-any
 export const videoFetchError = createAction(VideoActionTypes.videoFetchError, props<{ error: any }>());
+// tslint:disable-next-line:no-any
 export const videoFetchMockError = createAction(VideoActionTypes.videoFetchMockError, props<{ error: any }>());

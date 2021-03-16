@@ -21,10 +21,10 @@ export class VideoEffects {
           this._notification.fetchSuccess(videos.length);
         }),
         map(videos => {
-          return videoActions.fetchItemsSuccess({items: videos})
+          return videoActions.fetchItemsSuccess({items: videos});
         }),
         catchError(error => {
-          return of(videoActions.videoFetchError({error: error}))
+          return of(videoActions.videoFetchError({error}));
         })
       )
     )
@@ -38,10 +38,10 @@ export class VideoEffects {
           this._notification.fetchSuccess(videos.length);
         }),
         map(videos => {
-          return videoActions.fetchItemsSuccess({items: videos})
+          return videoActions.fetchItemsSuccess({items: videos});
         }),
         catchError(error => {
-          return of(videoActions.videoFetchMockError({error: error}))
+          return of(videoActions.videoFetchMockError({error}));
         })
       )
     )
@@ -51,7 +51,7 @@ export class VideoEffects {
     ofType(VideoActionTypes.videoFetchError),
     tap(
       () => {
-        this._notification.fetchError()
+        this._notification.fetchError();
       }
     ),
     map(() =>
@@ -63,7 +63,7 @@ export class VideoEffects {
     ofType(VideoActionTypes.videoFetchMockError),
     tap(
       () => {
-        this._notification.fetchError()
+        this._notification.fetchError();
       }
     )
   ), {dispatch: false});
@@ -75,9 +75,9 @@ export class VideoEffects {
       this._gridStore.select(fromSelectors.getCount)),
     tap(
       ([{itemId, type}, selected, count]) => {
-        return (type == videoActions.selectItem.type)
+        return (type === videoActions.selectItem.type)
           ? this._notification.selectItem(itemId, selected.length, count)
-          : this._notification.unselectItem(itemId, selected.length, count)
+          : this._notification.unselectItem(itemId, selected.length, count);
       }
     )
   ), {dispatch: false});
@@ -86,9 +86,9 @@ export class VideoEffects {
     ofType(VideoActionTypes.videoSelectAll, VideoActionTypes.videoUnselectAll),
     tap(
       ({type}) => {
-        return (type == videoActions.selectAll.type)
+        return (type === videoActions.selectAll.type)
           ? this._notification.selectAll()
-          : this._notification.unselectAll()
+          : this._notification.unselectAll();
       }
     )
   ), {dispatch: false});

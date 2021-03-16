@@ -1,5 +1,5 @@
 export interface IYtThumbnail {
-  url: string,
+  url: string;
   width: number;
   height: number;
 }
@@ -15,8 +15,8 @@ export interface IYtSnippet {
     default: IYtThumbnail,
     high: IYtThumbnail,
     medium: IYtThumbnail
-  },
-  title: string
+  };
+  title: string;
 }
 
 export interface IYtItem {
@@ -26,5 +26,5 @@ export interface IYtItem {
     videoId: string;
   };
   kind: string;
-  snippet: IYtSnippet
+  snippet: IYtSnippet;
 }
