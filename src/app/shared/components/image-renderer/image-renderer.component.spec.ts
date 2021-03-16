@@ -26,13 +26,13 @@ describe('ImageRendererComponent', () => {
 
   it('should initialize image attribute', () => {
     const mockLink = 'http://mock.link';
-    component.agInit(<ICellRendererParams>{value: mockLink});
+    component.agInit({value: mockLink} as ICellRendererParams);
     expect(component.value).toBe(mockLink);
   });
 
   it('should refresh image attribute', () => {
     const mockLink = 'http://mock.link.jest';
-    component.refresh(<ICellRendererParams>{value: mockLink});
+    component.refresh({value: mockLink} as ICellRendererParams);
     expect(component.value).toBe(mockLink);
   });
 });

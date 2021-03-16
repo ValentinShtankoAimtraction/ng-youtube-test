@@ -9,13 +9,13 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ImageRendererComponent implements ICellRendererAngularComp {
-  value: any;
+  value: string;
 
   constructor() {
   }
 
   agInit(params: ICellRendererParams): void {
-    this.value = params.value
+    this.value = params.value;
   }
 
   refresh(params: ICellRendererParams): boolean {

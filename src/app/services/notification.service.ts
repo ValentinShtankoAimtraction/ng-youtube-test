@@ -7,27 +7,27 @@ export class NotificationService {
   constructor(private _snackBar: MatSnackBar) {
   }
 
-  fetchSuccess(count: number) {
+  fetchSuccess(count: number): void {
     this._snackBar.open(`Fetch success [${count} videos]`);
   }
 
-  fetchError() {
+  fetchError(): void {
     this._snackBar.open(`Fetch failure`);
   }
 
-  selectItem(itemId: string, selected: number, count: number) {
+  selectItem(itemId: string, selected: number, count: number): void {
     this._snackBar.open(`Selected [${itemId}]`, `${selected}/${count}`);
   }
 
-  unselectItem(itemId: string, selected: number, count: number) {
+  unselectItem(itemId: string, selected: number, count: number): void {
     this._snackBar.open(`Unselected [${itemId}]`, `${selected}/${count}`);
   }
 
-  selectAll() {
+  selectAll(): void {
     this._snackBar.open(`Selected all videos`);
   }
 
-  unselectAll() {
+  unselectAll(): void {
     this._snackBar.open(`Unselected all videos`);
   }
 }

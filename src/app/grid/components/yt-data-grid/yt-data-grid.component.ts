@@ -38,33 +38,34 @@ export class YtDataGridComponent implements OnInit {
   }
 
   @Input() set isActiveSelection(active: boolean) {
-    if (!this.ytGrid)
+    if (!this.ytGrid) {
       return;
+    }
     if (!active && this.selectedItems.length) {
       this.ytGrid.api.deselectAll();
     }
     this.toggleSelectColumn(active);
-  };
+  }
 
   ngOnInit(): void {
   }
 
-  toggleSelectColumn(active: boolean) {
+  toggleSelectColumn(active: boolean): void {
     this.ytGrid.columnApi.setColumnVisible('selected', active);
   }
 
-  fitColumns() {
+  fitColumns(): void {
     this.ytGrid.api.sizeColumnsToFit();
   }
 
   getRowNodeId(item: IDtItem): string {
-    return item.id
+    return item.id;
   }
 
-  onSelectionChanged({api}: { api: GridApi }) {
-    let selectedIds = api.getSelectedRows().map((item) => item.id);
-    let unselected = this.selectedItems.filter(item => selectedIds.indexOf(item) < 0);
-    let selected = selectedIds.filter(item => this.selectedItems.indexOf(item) < 0);
+  onSelectionChanged({api}: { api: GridApi }): void {
+    const selectedIds = api.getSelectedRows().map((item) => item.id);
+    const unselected = this.selectedItems.filter(item => selectedIds.indexOf(item) < 0);
+    const selected = selectedIds.filter(item => this.selectedItems.indexOf(item) < 0);
     if (selected.length) {
       this.selectRows(selected);
     } else {
@@ -73,41 +74,41 @@ export class YtDataGridComponent implements OnInit {
     this.ytGrid.api.refreshHeader();
   }
 
-  selectRows(rowIds: string[]) {
+  selectRows(rowIds: string[]): void {
     if (rowIds.length > 1) {
       this.selectAll.emit();
       this.refreshRows();
     } else {
-      let rowId = rowIds.pop();
+      const rowId = rowIds.pop();
       this.selectItem.emit(rowId);
       this.refreshRow(rowId);
     }
   }
 
-  unselectRows(rowIds: string[]) {
+  unselectRows(rowIds: string[]): void {
     if (rowIds.length > 1) {
       this.unselectAll.emit();
       this.refreshRows();
     } else {
-      let rowId = rowIds.pop();
+      const rowId = rowIds.pop();
       this.unselectItem.emit(rowId);
-      this.refreshRow(rowId)
+      this.refreshRow(rowId);
     }
   }
 
   // Update checkbox status for single row
-  refreshRow(rowId) {
-    let rowNode = this.ytGrid.api.getRowNode(rowId);
+  refreshRow(rowId): void {
+    const rowNode = this.ytGrid.api.getRowNode(rowId);
 
     this.ytGrid.api.refreshCells({
       rowNodes: [rowNode],
       columns: ['selected'],
       force: true
-    })
+    });
   }
 
   // Update checkbox status for all rows
-  refreshRows() {
+  refreshRows(): void {
     this.ytGrid.api.refreshCells({
       columns: ['selected'],
       force: true

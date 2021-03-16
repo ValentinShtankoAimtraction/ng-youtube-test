@@ -6,6 +6,7 @@ import * as videoActions from '../actions/video.actions';
 export interface State extends EntityState<IDtItem> {
   loaded: boolean;
   loading: boolean;
+  // tslint:disable-next-line:no-any
   error: any;
   selectedVideos: string[];
 }
@@ -32,11 +33,11 @@ const videoReducer = createReducer(
   })),
   on(videoActions.unselectItem, (state, {itemId}) => ({
     ...state,
-    selectedVideos: state.selectedVideos.filter((item) => item != itemId)
+    selectedVideos: state.selectedVideos.filter((item) => item !== itemId)
   })),
   on(videoActions.selectAll, (state) => ({
     ...state,
-    selectedVideos: <string[]>state.ids
+    selectedVideos: state.ids as string[]
   })),
   on(videoActions.unselectAll, (state) => ({
     ...state,
@@ -46,12 +47,12 @@ const videoReducer = createReducer(
     ...state,
     loading: false,
     loaded: false,
-    error: error
+    error
   }))
 );
 
 export function reducer(state: State, action): State {
-  return videoReducer(state, action)
+  return videoReducer(state, action);
 }
 
 export const videoEntitySelectors = adapter.getSelectors();

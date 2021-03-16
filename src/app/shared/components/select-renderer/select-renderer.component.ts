@@ -9,7 +9,7 @@ import {ChangeDetectionStrategy, ChangeDetectorRef, Component} from '@angular/co
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectRendererComponent implements ICellRendererAngularComp {
-  checked: any;
+  checked: boolean;
   node: RowNode;
 
   constructor(private ref: ChangeDetectorRef) {
@@ -27,7 +27,7 @@ export class SelectRendererComponent implements ICellRendererAngularComp {
     return true;
   }
 
-  changeSelection({checked}) {
+  changeSelection({checked}): void {
     this.node.setSelected(checked);
     this.ref.detectChanges();
   }

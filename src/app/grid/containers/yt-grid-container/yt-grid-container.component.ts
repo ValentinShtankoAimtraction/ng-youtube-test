@@ -28,23 +28,23 @@ export class YtGridContainerComponent implements OnInit {
     this._videoStore.dispatch(videoActions.fetchItems());
   }
 
-  toggleSelection(status) {
-    this._gridStore.dispatch(gridActions.toggleSelection(status));
+  toggleSelection(status: boolean): void {
+    this._gridStore.dispatch(gridActions.toggleSelection({status}));
   }
 
-  selectItem(id: string) {
+  selectItem(id: string): void {
     this._videoStore.dispatch(videoActions.selectItem({itemId: id}));
   }
 
-  unselectItem(id: string) {
+  unselectItem(id: string): void {
     this._videoStore.dispatch(videoActions.unselectItem({itemId: id}));
   }
 
-  selectAll() {
+  selectAll(): void {
     this._videoStore.dispatch(videoActions.selectAll());
   }
 
-  unselectAll() {
+  unselectAll(): void {
     this._videoStore.dispatch(videoActions.unselectAll());
   }
 }

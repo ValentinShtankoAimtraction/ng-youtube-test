@@ -28,26 +28,26 @@ describe('SelectHeaderRendererComponent', () => {
   });
 
   it('should be return disable refresh state', () => {
-    expect(component.refresh(<IHeaderParams>{})).toBeFalsy();
+    expect(component.refresh({} as IHeaderParams)).toBeFalsy();
   });
 
   it('should select emit selectAll event', () => {
-    component.gridApi = <GridApi>{
+    component.gridApi = ({
       selectAll: () => {
       }
-    };
-    let spy = spyOn(component.gridApi, 'selectAll');
+    } as GridApi);
+    const spy = spyOn(component.gridApi, 'selectAll');
     component.selectAll();
     expect(spy).toHaveBeenCalled();
   });
 
   it('should select emit unselectAll event', () => {
-    component.gridApi = <GridApi>{
+    component.gridApi = ({
       deselectAll: () => {
       }
-    };
-    let spy = spyOn(component.gridApi, 'deselectAll');
+    } as GridApi);
+    const spy = spyOn(component.gridApi, 'deselectAll');
     component.unselectAll();
     expect(spy).toHaveBeenCalled();
-  })
+  });
 });

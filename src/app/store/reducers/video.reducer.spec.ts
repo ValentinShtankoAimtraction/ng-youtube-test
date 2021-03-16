@@ -38,7 +38,7 @@ describe('[Store] Grid reducer', () => {
       const state = videoReducer.reducer(initialState, action);
 
       expect(state.loading).toBe(true);
-    })
+    });
   });
 
   describe('fetchMockItems action', () => {
@@ -49,7 +49,7 @@ describe('[Store] Grid reducer', () => {
       const state = videoReducer.reducer(initialState, action);
 
       expect(state.loading).toBe(true);
-    })
+    });
   });
 
   describe('selectItem action', () => {
@@ -63,8 +63,8 @@ describe('[Store] Grid reducer', () => {
 
       const state = videoReducer.reducer(initialState, action);
 
-      expect(state.selectedVideos).toContain(item.itemId)
-    })
+      expect(state.selectedVideos).toContain(item.itemId);
+    });
   });
 
   describe('unselectItem action', () => {
@@ -81,8 +81,8 @@ describe('[Store] Grid reducer', () => {
 
       const state = videoReducer.reducer(initialState, action);
 
-      expect(state.selectedVideos).not.toContain(item.itemId)
-    })
+      expect(state.selectedVideos).not.toContain(item.itemId);
+    });
   });
 
   describe('selectAll action', () => {
@@ -98,8 +98,8 @@ describe('[Store] Grid reducer', () => {
 
       const state = videoReducer.reducer(initialState, action);
 
-      expect(state.selectedVideos).toEqual(expectedIds)
-    })
+      expect(state.selectedVideos).toEqual(expectedIds);
+    });
   });
 
   describe('unselectAll action', () => {
@@ -113,8 +113,8 @@ describe('[Store] Grid reducer', () => {
 
       const state = videoReducer.reducer(initialState, action);
 
-      expect(state.selectedVideos.length).toBe(0)
-    })
+      expect(state.selectedVideos.length).toBe(0);
+    });
   });
 
   describe('videoFetchError action', () => {
@@ -133,7 +133,7 @@ describe('[Store] Grid reducer', () => {
 
       expect(state.loading).toBe(false);
       expect(state.error).toBe(error.error);
-    })
+    });
   });
   describe('videoFetchMockError action', () => {
     it('should remove id of selected item from selectedVideos array', () => {
@@ -151,6 +151,6 @@ describe('[Store] Grid reducer', () => {
 
       expect(state.loading).toBe(false);
       expect(state.error).toBe(error.error);
-    })
+    });
   });
 });

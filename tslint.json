@@ -108,7 +108,8 @@
       "options": [
         "ban-keywords",
         "check-format",
-        "allow-pascal-case"
+        "allow-pascal-case",
+        "allow-leading-underscore"
       ]
     },
     "whitespace": {
@@ -148,6 +149,7 @@
       "app",
       "kebab-case"
     ],
-    "no-any": true
+    "no-any": true,
+    "no-unsafe-any": true
   }
 }

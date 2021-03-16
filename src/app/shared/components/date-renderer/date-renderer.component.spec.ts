@@ -27,13 +27,13 @@ describe('DateRendererComponent', () => {
 
   it('should initialize date attribute', () => {
     const mockDate = '2021-01-01T00:00:01Z';
-    component.agInit(<ICellRendererParams>{value: mockDate});
+    component.agInit({value: mockDate} as ICellRendererParams);
     expect(component.value).toBe(mockDate);
   });
 
   it('should refresh date attribute', () => {
     const mockDate = '2021-01-01T00:00:01Z';
-    component.refresh(<ICellRendererParams>{value: mockDate});
+    component.refresh({value: mockDate} as ICellRendererParams);
     expect(component.value).toBe(mockDate);
   });
 });
