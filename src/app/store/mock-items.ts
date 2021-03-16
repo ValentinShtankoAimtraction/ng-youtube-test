@@ -37,5 +37,5 @@ export const getMockItems = (): IDtItem[] => {
       publishedAt: 'test5',
       thumbnail: 'test5'
     },
-  ]
+  ];
 };

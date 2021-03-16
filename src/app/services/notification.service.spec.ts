@@ -28,7 +28,7 @@ describe('NotificationService', () => {
     service.fetchSuccess(count);
 
     expect(spy).toHaveBeenCalled();
-    expect(spy).toHaveBeenCalledWith(`Fetch success [${count} videos]`)
+    expect(spy).toHaveBeenCalledWith(`Fetch success [${count} videos]`);
   });
 
   it('should call fetchError', () => {

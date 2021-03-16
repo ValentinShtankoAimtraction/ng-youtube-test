@@ -28,7 +28,7 @@ describe('[Store] Video effects', () => {
         VideoEffects,
         provideMockActions(() => actions$),
         provideMockStore({
-          initialState: initialState,
+          initialState,
           selectors: [
             {
               selector: fromSelectors.getSelectedVideos,
@@ -87,7 +87,7 @@ describe('[Store] Video effects', () => {
     it('should return videoError', () => {
       const action = videoActions.fetchItems();
       const error = {};
-      const outcome = videoActions.videoFetchError({error: error});
+      const outcome = videoActions.videoFetchError({error});
 
       actions$ = hot('-a', {a: action});
 
@@ -119,7 +119,7 @@ describe('[Store] Video effects', () => {
     it('should return videoError', () => {
       const action = videoActions.fetchMockItems();
       const error = {};
-      const outcome = videoActions.videoFetchMockError({error: error});
+      const outcome = videoActions.videoFetchMockError({error});
 
       actions$ = hot('-a', {a: action});
 
@@ -136,7 +136,7 @@ describe('[Store] Video effects', () => {
 
     it('should return fetchMockItems', () => {
       const error = {};
-      const action = videoActions.videoFetchError({error: error});
+      const action = videoActions.videoFetchError({error});
       const outcome = videoActions.fetchMockItems();
 
       actions$ = hot('-a', {a: action});
@@ -151,7 +151,7 @@ describe('[Store] Video effects', () => {
 
     it('should call action', () => {
       const error = {};
-      const action = videoActions.videoFetchMockError({error: error});
+      const action = videoActions.videoFetchMockError({error});
 
       actions$ = cold('-a', {a: action});
 
@@ -197,5 +197,5 @@ describe('[Store] Video effects', () => {
       notification.unselectAll = (() => jest.fn());
       expect(effects.toggleSelectAll$).toBeObservable(cold('-a', {a: action}));
     });
-  })
+  });
 });

@@ -28,16 +28,16 @@ describe('SelectRendererComponent', () => {
   });
 
   it('should set checked status', () => {
-    let node = {isSelected: () => true};
+    const node = {isSelected: () => true};
     component.agInit({node});
     expect(component.checked).toBeTruthy();
   });
 
   it('should refresh params', () => {
-    let node = {isSelected: () => true};
+    const node = {isSelected: () => true};
     component.agInit({node});
-    let refreshNode = {isSelected: () => false};
-    component.refresh(<ICellRendererParams>{node: refreshNode});
+    const refreshNode = {isSelected: () => false};
+    component.refresh({node: refreshNode} as ICellRendererParams);
     expect(component.checked).toBeFalsy();
   });
 
@@ -46,9 +46,9 @@ describe('SelectRendererComponent', () => {
       setSelected: (newValue: boolean, clearSelection?: boolean, suppressFinishActions?: boolean) => {
       }
     } as RowNode;
-    let spy = spyOn(component.node, 'setSelected');
+    const spy = spyOn(component.node, 'setSelected');
     component.changeSelection({checked: true});
     expect(spy).toHaveBeenCalled();
     expect(spy).toHaveBeenCalledWith(true);
-  })
+  });
 });
