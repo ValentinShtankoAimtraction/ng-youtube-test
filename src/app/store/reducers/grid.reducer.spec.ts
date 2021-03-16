@@ -30,6 +30,6 @@ describe('[Store] Grid reducer', () => {
       const state = gridReducer.reducer(initialState, action);
 
       expect(state).toEqual(newState);
-    })
-  })
+    });
+  });
 });

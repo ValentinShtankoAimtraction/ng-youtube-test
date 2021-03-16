@@ -3,7 +3,7 @@ import {select, Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {IDtItem} from 'src/app/models/dt-item';
 import * as gridActions from 'src/app/store/actions/grid.actions';
-import * as videoactions from 'src/app/store/actions/video.actions';
+import * as videoActions from 'src/app/store/actions/video.actions';
 import * as fromReducer from 'src/app/store/reducers';
 import * as fromSelectors from 'src/app/store/selectors';
 
@@ -25,26 +25,26 @@ export class YtGridContainerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._videoStore.dispatch(videoactions.fetchItems());
+    this._videoStore.dispatch(videoActions.fetchItems());
   }
 
-  toggleSelection(status) {
-    this._gridStore.dispatch(gridActions.toggleSelection(status));
+  toggleSelection(status: boolean): void {
+    this._gridStore.dispatch(gridActions.toggleSelection({status}));
   }
 
-  selectItem(id: string) {
-    this._videoStore.dispatch(videoactions.selectItem({itemId: id}));
+  selectItem(id: string): void {
+    this._videoStore.dispatch(videoActions.selectItem({itemId: id}));
   }
 
-  unselectItem(id: string) {
-    this._videoStore.dispatch(videoactions.unselectItem({itemId: id}));
+  unselectItem(id: string): void {
+    this._videoStore.dispatch(videoActions.unselectItem({itemId: id}));
   }
 
-  selectAll() {
-    this._videoStore.dispatch(videoactions.selectAll());
+  selectAll(): void {
+    this._videoStore.dispatch(videoActions.selectAll());
   }
 
-  unselectAll() {
-    this._videoStore.dispatch(videoactions.unselectAll());
+  unselectAll(): void {
+    this._videoStore.dispatch(videoActions.unselectAll());
   }
 }

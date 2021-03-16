@@ -8,12 +8,17 @@ export const getVideoEntities = createSelector(
   fromReducers.video.videoEntitySelectors.selectAll
 );
 
-export const getVideos = createSelector(getVideoEntities, entities => Object.values(entities));
+export const getVideos = createSelector(getVideoEntities,
+    entities => Object.values(entities));
 
-export const getVideoLoaded = createSelector(getVideoStore, (videoStore: fromReducers.video.State) => videoStore.loaded);
+export const getVideoLoaded = createSelector(getVideoStore,
+  (videoStore: fromReducers.video.State) => videoStore.loaded);
 
-export const getVideoLoading = createSelector(getVideoStore, (videoStore: fromReducers.video.State) => videoStore.loading);
+export const getVideoLoading = createSelector(getVideoStore,
+  (videoStore: fromReducers.video.State) => videoStore.loading);
 
-export const getSelectedVideos = createSelector(getVideoStore, (videoStore: fromReducers.video.State) => <string[]>videoStore.selectedVideos);
+export const getSelectedVideos = createSelector(getVideoStore,
+  (videoStore: fromReducers.video.State) => videoStore.selectedVideos as string[]);
 
-export const getVideoErrors = createSelector(getVideoStore, (videoStore: fromReducers.video.State) => videoStore.error);
+export const getVideoErrors = createSelector(getVideoStore,
+  (videoStore: fromReducers.video.State) => videoStore.error);

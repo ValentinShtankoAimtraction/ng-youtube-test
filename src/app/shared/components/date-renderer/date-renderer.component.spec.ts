@@ -1,5 +1,5 @@
 import {ICellRendererParams} from '@ag-grid-community/core';
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {DateRendererComponent} from './date-renderer.component';
 
@@ -7,12 +7,12 @@ describe('DateRendererComponent', () => {
   let component: DateRendererComponent;
   let fixture: ComponentFixture<DateRendererComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
       declarations: [DateRendererComponent]
     })
       .compileComponents();
-  });
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DateRendererComponent);
@@ -27,13 +27,13 @@ describe('DateRendererComponent', () => {
 
   it('should initialize date attribute', () => {
     const mockDate = '2021-01-01T00:00:01Z';
-    component.agInit(<ICellRendererParams>{value: mockDate});
+    component.agInit({value: mockDate} as ICellRendererParams);
     expect(component.value).toBe(mockDate);
   });
 
   it('should refresh date attribute', () => {
     const mockDate = '2021-01-01T00:00:01Z';
-    component.refresh(<ICellRendererParams>{value: mockDate});
+    component.refresh({value: mockDate} as ICellRendererParams);
     expect(component.value).toBe(mockDate);
   });
 });

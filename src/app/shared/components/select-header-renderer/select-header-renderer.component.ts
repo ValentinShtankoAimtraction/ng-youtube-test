@@ -15,20 +15,21 @@ export class SelectHeaderRendererComponent implements IHeaderAngularComp {
   gridApi: GridApi;
 
   agInit(params: IHeaderParams): void {
-    let selected = params.api.getSelectedRows().length;
-    let rendered = params.api.getRenderedNodes().length;
+    const selected = params.api.getSelectedRows().length;
+    const rendered = params.api.getRenderedNodes().length;
     this.setCheckboxState(selected, rendered);
     this.gridApi = params.api;
   }
 
-  setCheckboxState(selected: number, rendered: number) {
+  setCheckboxState(selected: number, rendered: number): void {
     this.checked = false;
     this.indeterminate = false;
-    if (!selected)
+    if (!selected) {
       return;
+    }
 
     if (selected < rendered) {
-      this.indeterminate = true
+      this.indeterminate = true;
     } else {
       this.checked = true;
     }
@@ -38,15 +39,14 @@ export class SelectHeaderRendererComponent implements IHeaderAngularComp {
   }
 
   refresh(params: IHeaderParams): boolean {
-
     return false;
   }
 
-  selectAll() {
-    this.gridApi.selectAll()
+  selectAll(): void {
+    this.gridApi.selectAll();
   }
 
-  unselectAll() {
-    this.gridApi.deselectAll()
+  unselectAll(): void {
+    this.gridApi.deselectAll();
   }
 }

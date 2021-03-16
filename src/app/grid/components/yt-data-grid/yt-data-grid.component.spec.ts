@@ -1,7 +1,7 @@
 import {AgGridModule} from '@ag-grid-community/angular';
 import {ClientSideRowModelModule} from '@ag-grid-community/client-side-row-model';
 import {ModuleRegistry} from '@ag-grid-community/core';
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {RENDERER_COMPONENTS} from 'src/app/shared/components';
@@ -13,17 +13,16 @@ describe('YtDataGridComponent', () => {
   let component: YtDataGridComponent;
   let fixture: ComponentFixture<YtDataGridComponent>;
 
-  beforeEach(async () => {
-    await ModuleRegistry.registerModules([
+  beforeEach(waitForAsync(() => {
+    ModuleRegistry.registerModules([
       ClientSideRowModelModule,
     ]);
-    await TestBed.configureTestingModule({
+    TestBed.configureTestingModule({
       declarations: [YtDataGridComponent, RENDERER_COMPONENTS],
       imports: [AgGridModule.withComponents([RENDERER_COMPONENTS]), MatCardModule, MatCheckboxModule],
       providers: []
-    })
-      .compileComponents();
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(YtDataGridComponent);
@@ -51,7 +50,7 @@ describe('YtDataGridComponent', () => {
   it('should select item', () => {
     spyOn(component.selectItem, 'emit');
 
-    let api = component.ytGrid.api;
+    const api = component.ytGrid.api;
     api.getRowNode('test1').setSelected(true);
 
     component.onSelectionChanged({api});
@@ -63,7 +62,7 @@ describe('YtDataGridComponent', () => {
     spyOn(component.unselectItem, 'emit');
     component.selectedItems = ['test2'];
 
-    let api = component.ytGrid.api;
+    const api = component.ytGrid.api;
 
     api.getRowNode('test2').setSelected(false);
     component.onSelectionChanged({api});
@@ -73,8 +72,8 @@ describe('YtDataGridComponent', () => {
   });
 
   it('should select all items', () => {
-    let spy = spyOn(component.selectAll, 'emit');
-    let api = component.ytGrid.api;
+    const spy = spyOn(component.selectAll, 'emit');
+    const api = component.ytGrid.api;
 
     api.selectAll();
 
@@ -84,8 +83,8 @@ describe('YtDataGridComponent', () => {
   });
 
   it('should select all items', () => {
-    let spy = spyOn(component.unselectAll, 'emit');
-    let api = component.ytGrid.api;
+    const spy = spyOn(component.unselectAll, 'emit');
+    const api = component.ytGrid.api;
     component.selectedItems = ['test1', 'test2', 'test3', 'test4', 'test5'];
     api.deselectAll();
 
@@ -95,15 +94,15 @@ describe('YtDataGridComponent', () => {
   });
 
   it('should deselect items after disable selection mode', () => {
-    let spy = spyOn(component.ytGrid.api, 'deselectAll');
+    const spy = spyOn(component.ytGrid.api, 'deselectAll');
     component.selectedItems = ['test1', 'test2'];
     component.isActiveSelection = false;
     expect(spy).toHaveBeenCalled();
   });
 
   it('should call method sizeColumnsToFit from agGrid API', () => {
-    let spy = spyOn(component.ytGrid.api, 'sizeColumnsToFit');
+    const spy = spyOn(component.ytGrid.api, 'sizeColumnsToFit');
     component.fitColumns();
     expect(spy).toHaveBeenCalled();
-  })
+  });
 });
