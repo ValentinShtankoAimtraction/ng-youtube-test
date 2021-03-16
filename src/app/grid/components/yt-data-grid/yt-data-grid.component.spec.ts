@@ -82,7 +82,7 @@ describe('YtDataGridComponent', () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  it('should select all items', () => {
+  it('should unselect all items', () => {
     const spy = spyOn(component.unselectAll, 'emit');
     const api = component.ytGrid.api;
     component.selectedItems = ['test1', 'test2', 'test3', 'test4', 'test5'];
