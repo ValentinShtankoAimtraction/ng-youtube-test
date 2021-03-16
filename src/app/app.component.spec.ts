@@ -1,4 +1,4 @@
-import {TestBed} from '@angular/core/testing';
+import {TestBed, waitForAsync} from '@angular/core/testing';
 import {MockStore, provideMockStore} from '@ngrx/store/testing';
 import {GridModule} from 'src/app/grid/grid.module';
 import {AppComponent} from './app.component';
@@ -9,8 +9,8 @@ describe('AppComponent', () => {
     isActiveSelection: true
   };
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
       declarations: [
         AppComponent
       ],
@@ -21,7 +21,7 @@ describe('AppComponent', () => {
         provideMockStore({initialState})
       ],
     }).compileComponents();
-  });
+  }));
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);

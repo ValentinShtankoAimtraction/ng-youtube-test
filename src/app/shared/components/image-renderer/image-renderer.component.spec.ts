@@ -1,5 +1,5 @@
 import {ICellRendererParams} from '@ag-grid-community/core';
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {ImageRendererComponent} from './image-renderer.component';
 
@@ -7,12 +7,12 @@ describe('ImageRendererComponent', () => {
   let component: ImageRendererComponent;
   let fixture: ComponentFixture<ImageRendererComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
       declarations: [ImageRendererComponent]
     })
       .compileComponents();
-  });
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ImageRendererComponent);

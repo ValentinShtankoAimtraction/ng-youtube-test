@@ -1,7 +1,7 @@
 import {AgGridModule} from '@ag-grid-community/angular';
 import {ClientSideRowModelModule} from '@ag-grid-community/client-side-row-model';
 import {ModuleRegistry} from '@ag-grid-community/core';
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {RENDERER_COMPONENTS} from 'src/app/shared/components';
@@ -13,17 +13,16 @@ describe('YtDataGridComponent', () => {
   let component: YtDataGridComponent;
   let fixture: ComponentFixture<YtDataGridComponent>;
 
-  beforeEach(async () => {
-    await ModuleRegistry.registerModules([
+  beforeEach(waitForAsync(() => {
+    ModuleRegistry.registerModules([
       ClientSideRowModelModule,
     ]);
-    await TestBed.configureTestingModule({
+    TestBed.configureTestingModule({
       declarations: [YtDataGridComponent, RENDERER_COMPONENTS],
       imports: [AgGridModule.withComponents([RENDERER_COMPONENTS]), MatCardModule, MatCheckboxModule],
       providers: []
-    })
-      .compileComponents();
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(YtDataGridComponent);

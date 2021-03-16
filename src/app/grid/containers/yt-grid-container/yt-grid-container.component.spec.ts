@@ -1,4 +1,4 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 import {MockStore, provideMockStore} from '@ngrx/store/testing';
 import {GridModule} from 'src/app/grid/grid.module';
 
@@ -17,8 +17,8 @@ describe('YtGridContainerComponent', () => {
     }
   };
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
       declarations: [],
       imports: [GridModule],
       providers: [
@@ -27,7 +27,7 @@ describe('YtGridContainerComponent', () => {
       schemas: []
     })
       .compileComponents();
-  });
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(YtGridContainerComponent);

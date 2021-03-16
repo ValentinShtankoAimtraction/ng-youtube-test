@@ -1,5 +1,5 @@
 import {GridApi, IHeaderParams} from '@ag-grid-community/core';
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 
 import {SelectHeaderRendererComponent} from './select-header-renderer.component';
@@ -8,13 +8,13 @@ describe('SelectHeaderRendererComponent', () => {
   let component: SelectHeaderRendererComponent;
   let fixture: ComponentFixture<SelectHeaderRendererComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
       declarations: [SelectHeaderRendererComponent],
       imports: [MatCheckboxModule]
     })
       .compileComponents();
-  });
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SelectHeaderRendererComponent);

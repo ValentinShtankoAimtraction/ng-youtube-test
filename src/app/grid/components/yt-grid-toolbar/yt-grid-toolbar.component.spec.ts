@@ -1,4 +1,4 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 import {MatCardModule} from '@angular/material/card';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
@@ -8,13 +8,13 @@ describe('YtGridToolbarComponent', () => {
   let component: YtGridToolbarComponent;
   let fixture: ComponentFixture<YtGridToolbarComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
       declarations: [YtGridToolbarComponent],
       imports: [MatSlideToggleModule, MatCardModule]
     })
       .compileComponents();
-  });
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(YtGridToolbarComponent);

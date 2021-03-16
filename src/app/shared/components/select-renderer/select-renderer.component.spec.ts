@@ -1,6 +1,6 @@
 import {AgGridModule} from '@ag-grid-community/angular';
 import {ICellRendererParams, RowNode} from '@ag-grid-community/core';
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 
 import {SelectRendererComponent} from './select-renderer.component';
@@ -9,13 +9,13 @@ describe('SelectRendererComponent', () => {
   let component: SelectRendererComponent;
   let fixture: ComponentFixture<SelectRendererComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
       declarations: [SelectRendererComponent],
       imports: [MatCheckboxModule, AgGridModule.withComponents([SelectRendererComponent])]
     })
       .compileComponents();
-  });
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SelectRendererComponent);
