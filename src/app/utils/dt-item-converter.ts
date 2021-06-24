@@ -1,4 +1,4 @@
-import {IDtItem, IYtItem} from 'src/app/models';
+import { IYtItem, IDtItem } from '../models';
 
 export const toDtItems = (items: IYtItem[]): IDtItem[] => items.map((item) => toDtItem(item));
 

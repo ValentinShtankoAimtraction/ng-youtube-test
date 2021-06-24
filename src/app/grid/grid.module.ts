@@ -4,8 +4,8 @@ import {ModuleRegistry} from '@ag-grid-community/core';
 import {ClipboardModule} from '@ag-grid-enterprise/clipboard';
 import {MenuModule} from '@ag-grid-enterprise/menu';
 import {NgModule} from '@angular/core';
-import {RENDERER_COMPONENTS} from 'src/app/shared/components';
-import {SharedModule} from 'src/app/shared/shared.module';
+import { RENDERER_COMPONENTS } from '../shared/components';
+import { SharedModule } from '../shared/shared.module';
 import {COMPONENTS} from './components';
 import {CONTAINERS} from './containers';
 

@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-yt-grid-toolbar',
@@ -6,17 +6,10 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output}
   styleUrls: ['./yt-grid-toolbar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class YtGridToolbarComponent implements OnInit {
+export class YtGridToolbarComponent {
   @Input() isActiveSelection: boolean;
   @Input() totalItems: number;
   @Input() totalSelectedItems: number;
 
   @Output() toggleSelection: EventEmitter<boolean> = new EventEmitter<boolean>();
-
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
-
 }

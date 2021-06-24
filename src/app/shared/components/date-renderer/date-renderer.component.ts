@@ -11,9 +11,6 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 export class DateRendererComponent implements ICellRendererAngularComp {
   value: string;
 
-  constructor() {
-  }
-
   agInit(params: ICellRendererParams): void {
     this.value = params.value;
   }

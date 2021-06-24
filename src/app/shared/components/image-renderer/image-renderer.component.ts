@@ -11,9 +11,6 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 export class ImageRendererComponent implements ICellRendererAngularComp {
   value: string;
 
-  constructor() {
-  }
-
   agInit(params: ICellRendererParams): void {
     this.value = params.value;
   }

@@ -1,5 +1,5 @@
 import {IHeaderAngularComp} from '@ag-grid-community/angular';
-import {GridApi, IAfterGuiAttachedParams, IHeaderParams} from '@ag-grid-community/core';
+import {GridApi, IHeaderParams} from '@ag-grid-community/core';
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 
 @Component({
@@ -35,10 +35,7 @@ export class SelectHeaderRendererComponent implements IHeaderAngularComp {
     }
   }
 
-  afterGuiAttached(params?: IAfterGuiAttachedParams): void {
-  }
-
-  refresh(params: IHeaderParams): boolean {
+  refresh(): boolean {
     return false;
   }
 

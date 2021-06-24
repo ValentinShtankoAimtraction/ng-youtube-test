@@ -12,7 +12,7 @@ export class SelectRendererComponent implements ICellRendererAngularComp {
   checked: boolean;
   node: RowNode;
 
-  constructor(private ref: ChangeDetectorRef) {
+  constructor(private readonly ref: ChangeDetectorRef) {
   }
 
   agInit({node}): void {

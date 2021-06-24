@@ -1,6 +1,6 @@
 import {createEntityAdapter, EntityAdapter, EntityState} from '@ngrx/entity';
 import {createReducer, on} from '@ngrx/store';
-import {IDtItem} from 'src/app/models';
+import { IDtItem } from '../../models';
 import * as videoActions from '../actions/video.actions';
 
 export interface State extends EntityState<IDtItem> {

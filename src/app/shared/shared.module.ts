@@ -4,7 +4,6 @@ import {COMPONENTS} from './components';
 import {MaterialModule} from './material.module';
 
 export const MODULES = [
-
   CommonModule,
   MaterialModule
 ];
