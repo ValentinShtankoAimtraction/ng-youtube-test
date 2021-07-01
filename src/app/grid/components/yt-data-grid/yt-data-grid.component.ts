@@ -1,14 +1,14 @@
 import {AgGridAngular} from '@ag-grid-community/angular';
 import {GridApi} from '@ag-grid-community/core';
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, Self, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output, Self, ViewChild} from '@angular/core';
 
-import {IDtItem} from 'src/app/models/dt-item';
+import { IDtItem } from '../../../models';
 import {
   DateRendererComponent,
   ImageRendererComponent,
   SelectHeaderRendererComponent,
   SelectRendererComponent
-} from 'src/app/shared/components';
+} from '../../../shared/components';
 import {DtGridService} from '../../services/dt-grid.service';
 
 @Component({
@@ -18,7 +18,7 @@ import {DtGridService} from '../../services/dt-grid.service';
   providers: [DtGridService],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class YtDataGridComponent implements OnInit {
+export class YtDataGridComponent {
   @ViewChild('ytGrid') ytGrid: AgGridAngular;
   @Input() items: IDtItem[];
   @Input() selectedItems: string[];
@@ -45,9 +45,6 @@ export class YtDataGridComponent implements OnInit {
       this.ytGrid.api.deselectAll();
     }
     this.toggleSelectColumn(active);
-  }
-
-  ngOnInit(): void {
   }
 
   toggleSelectColumn(active: boolean): void {

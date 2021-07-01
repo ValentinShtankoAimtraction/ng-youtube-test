@@ -4,7 +4,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 @Injectable()
 export class NotificationService {
 
-  constructor(private _snackBar: MatSnackBar) {
+  constructor(private readonly _snackBar: MatSnackBar) {
   }
 
   fetchSuccess(count: number): void {

@@ -2,15 +2,15 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {IDtItem, IYtRequestOptions, IYtResponse} from 'src/app/models';
-import {toDtItems} from 'src/app/utils/dt-item-converter';
-import {environment} from 'src/environments/environment';
+import { IYtRequestOptions, IDtItem, IYtResponse } from '../models';
+import { toDtItems } from '../utils/dt-item-converter';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class YtDataService {
   requestOptions: IYtRequestOptions;
 
-  constructor(private _http: HttpClient) {
+  constructor(private readonly _http: HttpClient) {
     this.requestOptions = {
       maxResults: '50',
       type: 'video',

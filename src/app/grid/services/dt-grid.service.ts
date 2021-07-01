@@ -29,9 +29,6 @@ export class DtGridService {
     {headerName: 'Published on', field: 'publishedAt', maxWidth: 240, cellRenderer: 'dateRenderer'},
   ];
 
-  constructor() {
-  }
-
   getContextMenuItems(params: { column: { colId: string }, node: { data: { id: string } } }): MenuItemDef[] {
     const result = [];
     if (params.column.colId === 'title') {

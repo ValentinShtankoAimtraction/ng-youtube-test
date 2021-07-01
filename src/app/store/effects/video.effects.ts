@@ -3,11 +3,11 @@ import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {Store} from '@ngrx/store';
 import {of} from 'rxjs';
 import {catchError, map, switchMap, tap, withLatestFrom} from 'rxjs/operators';
-import {NotificationService} from 'src/app/services/notification.service';
-import {YtDataService} from 'src/app/services/yt-data.service';
-import {VideoActionTypes} from 'src/app/store/actions/video.actions';
-import * as fromReducer from 'src/app/store/reducers';
-import * as fromSelectors from 'src/app/store/selectors';
+import {NotificationService} from '../../services/notification.service';
+import {YtDataService} from '../../services/yt-data.service';
+import {VideoActionTypes} from '../../store/actions/video.actions';
+import * as fromReducer from '../../store/reducers';
+import * as fromSelectors from '../../store/selectors';
 import * as videoActions from '../actions/video.actions';
 
 @Injectable()
@@ -94,11 +94,11 @@ export class VideoEffects {
   ), {dispatch: false});
 
   constructor(
-    private _actions$: Actions,
-    private _videoStore: Store<fromReducer.video.State>,
-    private _gridStore: Store<fromReducer.grid.State>,
-    private _ytData: YtDataService,
-    private _notification: NotificationService
+    private readonly _actions$: Actions,
+    private readonly _videoStore: Store<fromReducer.video.State>,
+    private readonly _gridStore: Store<fromReducer.grid.State>,
+    private readonly _ytData: YtDataService,
+    private readonly _notification: NotificationService
   )
   {
   }
